@@ -1,8 +1,9 @@
 import React from 'react';
+import Login from './components/login';
 
 function App() {
   return (
-    <div>This is app component.</div>
+    <Login/>
   );
 }
 
