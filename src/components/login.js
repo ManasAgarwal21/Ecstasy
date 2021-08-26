@@ -9,6 +9,8 @@ import { Avatar, Container,
 import { makeStyles } from "@material-ui/core/styles";
 // import { Redirect } from 'react-router-dom';
 import { LockOutlined, Visibility, VisibilityOff } from '@material-ui/icons';
+import { useSelector, useDispatch } from 'react-redux';
+import {getData} from './../reducers';
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -32,6 +34,8 @@ const useStyles = makeStyles(theme => ({
 
 export default function Login({location}){
     const classNames = useStyles();
+    const user = useSelector(getData);
+    const dispatch = useDispatch();
 
     const [values, setValues] = useState({
         password: '',

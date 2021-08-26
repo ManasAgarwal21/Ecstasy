@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
-import {updateName, getData} from './';
+import {updateUser, getData} from './';
 
 export const rootReducer = () => {
     return combineReducers({
-        updateName,
+        updateUser,
         getData
     })
 }
