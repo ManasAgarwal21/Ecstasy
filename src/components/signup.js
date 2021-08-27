@@ -5,7 +5,7 @@ import {Container,
     OutlinedInput,Grid, Icon,
     InputLabel, Box } from '@material-ui/core';
 import React, {useState} from 'react';
-// import { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { LockOutlined, Visibility, VisibilityOff } from '@material-ui/icons';
 import {makeStyles} from '@material-ui/core/styles';
 import {useDispatch} from 'react-redux';
@@ -83,16 +83,18 @@ export default function Signup(props) {
            setExtras({ ...extras, error: 'Confirm password is different', message: ''});
            return;
        }
+       else{
+           setExtras({...extras, open: true});
+       }
    };
 
-//    const {open} = values;
-//    if(open){
-//        return (<Redirect to={{
-//            pathname: '/signin',
-//            props: values,
-//            state: {from: props.location},
-//        }}/>)
-//    }
+   const {open} =extras;
+   if(open){
+       return (<Redirect to={{
+           pathname: '/signin',
+           state: {from: props.location},
+       }}/>)
+   }
 
    return (
        <Container className={classNames.main} component="main" maxWidth="xs">
