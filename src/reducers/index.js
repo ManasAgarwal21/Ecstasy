@@ -5,31 +5,16 @@ const initialState = {
         role: '',
         password: '',
         email: ''
-    },
-    loggedUser : {
-        email: '',
-        password: ''
     }
 };
 
 export const updateUser = (state = initialState, action) => {
-    switch(action.type){
-        case 'UPDATE_USER': return action.payload;
-        default: return state;
+    if(action.type === "UPDATE_USER"){
+        return action.payload;
     }
+    return state;
 }
 
-export const addLoggedUser = (state = initialState, action) => {
-    switch(action.type){
-        case 'LOGGED_USER': return action.payload;
-        default: return state;
-    }
-}
-
-export const getLoggedUser = ({loggedUser}) => {
-    return loggedUser;
-}
-
-export const getData = ({updateState}) => {
-    return updateState;
+export const getData = (state = initialState) => {
+    return state;
 }

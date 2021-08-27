@@ -9,7 +9,7 @@ import { Avatar, Container,
 import { makeStyles } from "@material-ui/core/styles";
 // import { Redirect } from 'react-router-dom';
 import { LockOutlined, Visibility, VisibilityOff } from '@material-ui/icons';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {getData} from './../reducers';
 
 const useStyles = makeStyles(theme => ({
@@ -35,7 +35,8 @@ const useStyles = makeStyles(theme => ({
 export default function Login({location}){
     const classNames = useStyles();
     const user = useSelector(getData);
-    const dispatch = useDispatch();
+    console.log(user);
+    // const dispatch = useDispatch();
 
     const [values, setValues] = useState({
         password: '',
@@ -60,16 +61,11 @@ export default function Login({location}){
     
     const handleSubmit = (event) => {
         event.preventDefault();
-        const user = {
-            email: values.email || undefined,
-            password: values.password || undefined
-        }
     }
 
     // useEffect(() => {
-    //     if(location.props)
-    //         setValues({...values, email: location.props.email, password: location.props.password})
-    // }, [location]);
+    //         setValues({...values, email: user.email, password: user.password})
+    // }, [user]);
 
     // const {redirectToReferrer} = values;
     
