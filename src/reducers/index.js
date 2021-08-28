@@ -1,35 +1,20 @@
+import extend from 'lodash/extend';
+
 const initialState = {
-    updateState: {
         firstName: '',
         lastName: '',
-        role: '',
-        password: '',
-        email: ''
-    },
-    loggedUser : {
         email: '',
-        password: ''
-    }
+        password: '',
+        role: ''
 };
 
-export const updateUser = (state = initialState, action) => {
-    switch(action.type){
-        case 'UPDATE_USER': return action.payload;
-        default: return state;
+export const updateReducer = (state = initialState, action) => {
+    if(action.type === "UPDATE_USER"){
+        return extend(state, action.payload);
     }
+    return state;
 }
 
-export const addLoggedUser = (state = initialState, action) => {
-    switch(action.type){
-        case 'LOGGED_USER': return action.payload;
-        default: return state;
-    }
-}
-
-export const getLoggedUser = ({loggedUser}) => {
-    return loggedUser;
-}
-
-export const getData = ({updateState}) => {
-    return updateState;
+export const getData = (updateUser = initialState) => {
+    return updateUser;
 }

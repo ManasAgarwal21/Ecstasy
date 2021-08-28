@@ -1,16 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import { Avatar, Container, 
     Typography, TextField, 
     Button, Checkbox,
     FormControlLabel, Icon,
-    Grid, Link, Box, FormControl, 
+    Grid, Box, FormControl, 
     InputAdornment, IconButton,
     OutlinedInput, InputLabel } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-// import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { LockOutlined, Visibility, VisibilityOff } from '@material-ui/icons';
 import { useSelector, useDispatch } from 'react-redux';
-import {getData} from './../reducers';
+import { getData } from './../reducers';
+import {updateUser} from './../actions';
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -23,6 +24,12 @@ const useStyles = makeStyles(theme => ({
         margin: theme.spacing(1),
         backgroundColor: theme.palette.primary.light,
     },
+    text:{
+        color: theme.palette.primary.dark,
+        '&:hover': {
+            textDecoration: 'underline'
+        }
+    },
     form: {
         width: '100%', // Fix IE 11 issue.
         marginTop: theme.spacing(1),
@@ -34,12 +41,15 @@ const useStyles = makeStyles(theme => ({
 
 export default function Login({location}){
     const classNames = useStyles();
-    const user = useSelector(getData);
+    const {updateReducer} = useSelector(getData);
     const dispatch = useDispatch();
 
-    const [values, setValues] = useState({
-        password: '',
-        email: '',
+    const [user, setUser] = useState({
+        password: updateReducer.password,
+        email: updateReducer.email
+    });
+
+    const [extras, setExtras] = useState({
         showPassword: false,
         error: '',
         message: '',
@@ -47,11 +57,12 @@ export default function Login({location}){
     });
 
     const handleChange = (prop) => (event) =>  {
-        setValues({ ...values, [prop]: event.target.value});
+        setUser({ ...user, [prop]: event.target.value});
+        dispatch(updateUser(user));
     }
 
     const handleClickShowPassword = () => {
-        setValues({ ...values, showPassword: !values.showPassword});
+        setExtras({ ...extras, showPassword: !extras.showPassword});
     }
     
     const handleMouseDownPassword = event => {
@@ -60,24 +71,19 @@ export default function Login({location}){
     
     const handleSubmit = (event) => {
         event.preventDefault();
-        const user = {
-            email: values.email || undefined,
-            password: values.password || undefined
-        }
+        setExtras({...extras, redirectToReferrer: true});
     }
 
-    // useEffect(() => {
-    //     if(location.props)
-    //         setValues({...values, email: location.props.email, password: location.props.password})
-    // }, [location]);
-
-    // const {redirectToReferrer} = values;
+    const {redirectToReferrer} = extras;
     
-    // if(redirectToReferrer){
-    //     return (
-    //         <Redirect to="/users"/>
-    //     )
-    // }
+    if(redirectToReferrer){
+        return (
+            <Redirect to={{
+                pathname: "/",
+                state: {from : location}
+            }}/>
+        )
+    }
 
     return (
         <Container component="main" maxWidth="xs">
@@ -99,7 +105,7 @@ export default function Login({location}){
                         label="Email Address"
                         name="email"
                         onChange={handleChange('email')}
-                        value={values.email}
+                        value={user.email}
                         autoComplete="email"
                         autoFocus/>
                     <FormControl variant="outlined" required fullWidth>
@@ -109,8 +115,8 @@ export default function Login({location}){
                         <OutlinedInput
                             id="password"
                             onChange={handleChange('password')}
-                            value={values.password}
-                            type={values.showPassword ? "text" : "password"}
+                            value={user.password}
+                            type={extras.showPassword ? "text" : "password"}
                             endAdornment={
                                 <InputAdornment position="end">
                                     <IconButton
@@ -119,7 +125,7 @@ export default function Login({location}){
                                     onMouseDown={handleMouseDownPassword}
                                     edge="end"
                                     >
-                                    {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                                    {extras.showPassword ? <Visibility /> : <VisibilityOff />}
                                     </IconButton>
                                 </InputAdornment>
                             }
@@ -128,9 +134,9 @@ export default function Login({location}){
                     </FormControl>
                     <br/>
                     {
-                        values.error && (<Typography component="p" color="error">
+                        extras.error && (<Typography component="p" color="error">
                             <Icon color="error">error</Icon>
-                            {values.error}
+                            {extras.error}
                         </Typography>)
                     }
                     <FormControlLabel
@@ -147,12 +153,12 @@ export default function Login({location}){
                     </Button>
                     <Grid container>
                         <Grid item xs>
-                            <Link href="#" variant="body2">
-                                Forgot password?
+                            <Link to="/forgot" className={classNames.text}>
+                                {"Forgot password?"}
                             </Link>
                         </Grid>
                         <Grid item>
-                            <Link href="#" variant="body2">
+                            <Link to="/signup" className={classNames.text}>
                                 {"Don't have an account? Sign Up"}
                             </Link>
                         </Grid>

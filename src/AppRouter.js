@@ -1,12 +1,19 @@
 import React from 'react';
-import App from './App';
+import { Route, Switch } from 'react-router-dom';
+import Signup from './components/signup';
+import Login from './components/login';
+import Home from './components/Home';
 
-function appRouter() {
+const AppRouter = () => {
     return (
         <div>
-            <App/>
+            <Switch>
+                <Route exact path="/" component={ Home }/>
+                <Route exact path="/signup" component={ Signup }/>
+                <Route exact path="/signin" component={ Login }/>
+            </Switch>
         </div>
     )
-}
+};
 
-export default appRouter;
+export default AppRouter;
