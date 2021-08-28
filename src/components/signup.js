@@ -5,11 +5,11 @@ import {Container,
     OutlinedInput,Grid, Icon,
     InputLabel, Box } from '@material-ui/core';
 import React, {useState, useEffect} from 'react';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { LockOutlined, Visibility, VisibilityOff } from '@material-ui/icons';
 import {makeStyles} from '@material-ui/core/styles';
 import {useDispatch} from 'react-redux';
-import {updateUser} from './../actions';
+import {updateUser} from './../redux/actions';
 
 const useStyles = makeStyles(theme => ({
    main: {
@@ -27,6 +27,12 @@ const useStyles = makeStyles(theme => ({
    form: {
        width: '100%', // Fix IE 11 issue.
        marginTop: theme.spacing(1),
+   },
+   text:{
+       color: theme.palette.primary.dark,
+       '&:hover': {
+           textDecoration: 'underline'
+       }
    },
    submit: {
        margin: theme.spacing(3, 0, 2),
@@ -236,6 +242,15 @@ export default function Signup(props) {
                                    Sign Up
                            </Button>
                        </Grid>
+                       <Grid container>
+                        <Grid item xs>
+                        </Grid>
+                        <Grid item>
+                            <Link to="/signin" className={classNames.text}>
+                                {"Already have an account? Sign In"}
+                            </Link>
+                        </Grid>
+                    </Grid>
                    </Grid>
                </form>
            </div>
