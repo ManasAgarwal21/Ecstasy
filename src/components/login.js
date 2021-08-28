@@ -3,11 +3,11 @@ import { Avatar, Container,
     Typography, TextField, 
     Button, Checkbox,
     FormControlLabel, Icon,
-    Grid, Link, Box, FormControl, 
+    Grid, Box, FormControl, 
     InputAdornment, IconButton,
     OutlinedInput, InputLabel } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { LockOutlined, Visibility, VisibilityOff } from '@material-ui/icons';
 import { useSelector, useDispatch } from 'react-redux';
 import { getData } from './../reducers';
@@ -23,6 +23,12 @@ const useStyles = makeStyles(theme => ({
     avatar: {
         margin: theme.spacing(1),
         backgroundColor: theme.palette.primary.light,
+    },
+    text:{
+        color: theme.palette.primary.dark,
+        '&:hover': {
+            textDecoration: 'underline'
+        }
     },
     form: {
         width: '100%', // Fix IE 11 issue.
@@ -147,12 +153,12 @@ export default function Login({location}){
                     </Button>
                     <Grid container>
                         <Grid item xs>
-                            <Link href="#" variant="body2">
-                                Forgot password?
+                            <Link to="/forgot" className={classNames.text}>
+                                {"Forgot password?"}
                             </Link>
                         </Grid>
                         <Grid item>
-                            <Link href="#" variant="body2">
+                            <Link to="/signup" className={classNames.text}>
                                 {"Don't have an account? Sign Up"}
                             </Link>
                         </Grid>
