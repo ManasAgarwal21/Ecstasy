@@ -1,20 +1,20 @@
+import extend from 'lodash/extend';
+
 const initialState = {
-    updateState: {
         firstName: '',
         lastName: '',
-        role: '',
+        email: '',
         password: '',
-        email: ''
-    }
+        role: ''
 };
 
-export const updateUser = (state = initialState, action) => {
+export const updateReducer = (state = initialState, action) => {
     if(action.type === "UPDATE_USER"){
-        return action.payload;
+        return extend(state, action.payload);
     }
     return state;
 }
 
-export const getData = (state = initialState) => {
-    return state;
+export const getData = (updateUser = initialState) => {
+    return updateUser;
 }

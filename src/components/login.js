@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import { Avatar, Container, 
     Typography, TextField, 
     Button, Checkbox,
@@ -7,10 +7,11 @@ import { Avatar, Container,
     InputAdornment, IconButton,
     OutlinedInput, InputLabel } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-// import { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { LockOutlined, Visibility, VisibilityOff } from '@material-ui/icons';
-import { useSelector } from 'react-redux';
-import {getData} from './../reducers';
+import { useSelector, useDispatch } from 'react-redux';
+import { getData } from './../reducers';
+import {updateUser} from './../actions';
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -34,13 +35,15 @@ const useStyles = makeStyles(theme => ({
 
 export default function Login({location}){
     const classNames = useStyles();
-    const user = useSelector(getData);
-    console.log(user);
-    // const dispatch = useDispatch();
+    const {updateReducer} = useSelector(getData);
+    const dispatch = useDispatch();
 
-    const [values, setValues] = useState({
-        password: '',
-        email: '',
+    const [user, setUser] = useState({
+        password: updateReducer.password,
+        email: updateReducer.email
+    });
+
+    const [extras, setExtras] = useState({
         showPassword: false,
         error: '',
         message: '',
@@ -48,11 +51,12 @@ export default function Login({location}){
     });
 
     const handleChange = (prop) => (event) =>  {
-        setValues({ ...values, [prop]: event.target.value});
+        setUser({ ...user, [prop]: event.target.value});
+        dispatch(updateUser(user));
     }
 
     const handleClickShowPassword = () => {
-        setValues({ ...values, showPassword: !values.showPassword});
+        setExtras({ ...extras, showPassword: !extras.showPassword});
     }
     
     const handleMouseDownPassword = event => {
@@ -61,19 +65,19 @@ export default function Login({location}){
     
     const handleSubmit = (event) => {
         event.preventDefault();
+        setExtras({...extras, redirectToReferrer: true});
     }
 
-    // useEffect(() => {
-    //         setValues({...values, email: user.email, password: user.password})
-    // }, [user]);
-
-    // const {redirectToReferrer} = values;
+    const {redirectToReferrer} = extras;
     
-    // if(redirectToReferrer){
-    //     return (
-    //         <Redirect to="/users"/>
-    //     )
-    // }
+    if(redirectToReferrer){
+        return (
+            <Redirect to={{
+                pathname: "/",
+                state: {from : location}
+            }}/>
+        )
+    }
 
     return (
         <Container component="main" maxWidth="xs">
@@ -95,7 +99,7 @@ export default function Login({location}){
                         label="Email Address"
                         name="email"
                         onChange={handleChange('email')}
-                        value={values.email}
+                        value={user.email}
                         autoComplete="email"
                         autoFocus/>
                     <FormControl variant="outlined" required fullWidth>
@@ -105,8 +109,8 @@ export default function Login({location}){
                         <OutlinedInput
                             id="password"
                             onChange={handleChange('password')}
-                            value={values.password}
-                            type={values.showPassword ? "text" : "password"}
+                            value={user.password}
+                            type={extras.showPassword ? "text" : "password"}
                             endAdornment={
                                 <InputAdornment position="end">
                                     <IconButton
@@ -115,7 +119,7 @@ export default function Login({location}){
                                     onMouseDown={handleMouseDownPassword}
                                     edge="end"
                                     >
-                                    {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                                    {extras.showPassword ? <Visibility /> : <VisibilityOff />}
                                     </IconButton>
                                 </InputAdornment>
                             }
@@ -124,9 +128,9 @@ export default function Login({location}){
                     </FormControl>
                     <br/>
                     {
-                        values.error && (<Typography component="p" color="error">
+                        extras.error && (<Typography component="p" color="error">
                             <Icon color="error">error</Icon>
-                            {values.error}
+                            {extras.error}
                         </Typography>)
                     }
                     <FormControlLabel
