@@ -11,7 +11,12 @@ const Home = ({location}) => {
         )
     }
     return(
-        <div>Hello {updateReducer.firstName}, Welcome to our e-commerce website.</div>
+        <div>Hello {
+            (updateReducer.firstName === "") ? 
+            (updateReducer.email.substring(0, 
+                updateReducer.email.indexOf("@"))) :
+            (updateReducer.firstName) 
+            }, Welcome to our e-commerce website.</div>
     )
 }
 
