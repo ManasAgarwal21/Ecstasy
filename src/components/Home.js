@@ -1,13 +1,13 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import {useSelector} from 'react-redux';
-import {getData} from './../reducers';
+import {getData} from './../redux/reducers';
 
 const Home = ({location}) => {
     const {updateReducer} = useSelector(getData);
     if(!location.state){
         return (
-            <Redirect to="/signup"/>
+            <Redirect to="/signin"/>
         )
     }
     return(

@@ -10,8 +10,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Link, Redirect } from 'react-router-dom';
 import { LockOutlined, Visibility, VisibilityOff } from '@material-ui/icons';
 import { useSelector, useDispatch } from 'react-redux';
-import { getData } from './../reducers';
-import {updateUser} from './../actions';
+import { getData } from '../redux/reducers';
+import {updateUser} from '../redux/actions';
 
 const useStyles = makeStyles(theme => ({
     paper: {
