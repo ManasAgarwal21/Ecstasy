@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Avatar, Container, 
     Typography, TextField, 
     Button, Checkbox,
@@ -56,9 +56,12 @@ export default function Login({location}){
         redirectToReferrer: false
     });
 
+    useEffect(() => {
+        dispatch(updateUser(user));
+    }, [dispatch, user]);
+
     const handleChange = (prop) => (event) =>  {
         setUser({ ...user, [prop]: event.target.value});
-        dispatch(updateUser(user));
     }
 
     const handleClickShowPassword = () => {

@@ -4,7 +4,7 @@ import {Container,
     InputAdornment, IconButton,
     OutlinedInput,Grid, Icon,
     InputLabel, Box } from '@material-ui/core';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Redirect } from 'react-router-dom';
 import { LockOutlined, Visibility, VisibilityOff } from '@material-ui/icons';
 import {makeStyles} from '@material-ui/core/styles';
@@ -46,16 +46,19 @@ export default function Signup(props) {
        email: '',
    });
    const [extras, setExtras] = useState({
-    showPassword: false,
-    showConfirmPassword: false,
-    open: false,
-    error: '',
-    message: '',
-});
+        showPassword: false,
+        showConfirmPassword: false,
+        open: false,
+        error: '',
+        message: '',
+   });
+
+   useEffect(() => {
+       dispatch(updateUser(user));
+   }, [dispatch, user]);
 
    const handleChange = name => event => {
-       setUser({ ...user, [name]: event.target.value})
-       dispatch(updateUser(user));
+       setUser({ ...user, [name]: event.target.value});
    };
 
    const handleClickShowPassword = () => {
