@@ -100,7 +100,7 @@ export default function Signup(props) {
    const {open} =extras;
    if(open){
        return (<Redirect to={{
-           pathname: '/home',
+           pathname: '/login',
            state: {from: props.location},
        }}/>)
    }
