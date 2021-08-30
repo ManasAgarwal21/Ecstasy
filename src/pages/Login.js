@@ -10,8 +10,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Link, Redirect } from 'react-router-dom';
 import { LockOutlined, Visibility, VisibilityOff } from '@material-ui/icons';
 import { useSelector, useDispatch } from 'react-redux';
-import { getData } from '../redux/reducers';
-import {updateUser} from '../redux/actions';
+import { getData } from '../redux/selectors/user.selectors';
+import {updateUser} from '../redux/actions/user.actions';
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -41,12 +41,12 @@ const useStyles = makeStyles(theme => ({
 
 export default function Login({location}){
     const classNames = useStyles();
-    const {updateReducer} = useSelector(getData);
+    const {userReducer} = useSelector(getData);
     const dispatch = useDispatch();
 
     const [user, setUser] = useState({
-        password: updateReducer.password,
-        email: updateReducer.email
+        password: userReducer.password,
+        email: userReducer.email
     });
 
     const [extras, setExtras] = useState({

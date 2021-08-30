@@ -9,7 +9,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { LockOutlined, Visibility, VisibilityOff } from '@material-ui/icons';
 import {makeStyles} from '@material-ui/core/styles';
 import {useDispatch} from 'react-redux';
-import {updateUser} from './../redux/actions';
+import {updateUser} from '../redux/actions/user.actions';
 
 const useStyles = makeStyles(theme => ({
    main: {
@@ -100,7 +100,7 @@ export default function Signup(props) {
    const {open} =extras;
    if(open){
        return (<Redirect to={{
-           pathname: '/signin',
+           pathname: '/home',
            state: {from: props.location},
        }}/>)
    }
