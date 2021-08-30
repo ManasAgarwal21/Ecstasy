@@ -82,7 +82,7 @@ export default function Login({location}){
     if(redirectToReferrer){
         return (
             <Redirect to={{
-                pathname: "/",
+                pathname: "/home",
                 state: {from : location}
             }}/>
         )
