@@ -7,7 +7,7 @@ const useStyles = makeStyles(theme => ({
         padding: '8px 16px',
         display: 'block',
         overflow: 'scroll',
-        boxShadow: '0px 0px 8px -4px rgba(0,0,0,0.5)',
+        boxShadow: '0px 2px 8px -5px rgba(0,0,0,0.5)',
         '&::-webkit-scrollbar':{
             display: 'none'
         }
@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const listItems = ['Men', 'Women', 'Health', 
-    'Mobiles', 'Jewellery', 'Kids', 
+    'Mobiles', 'Grocery', 'Jewellery', 'Kids', 
     'Electronics', 'Furniture', 'Shoes', 'Books'];
 
 export default function Categories(){
@@ -41,18 +41,16 @@ export default function Categories(){
     const handleClick = event => {
         const target = (event.target.tagName === 'BUTTON') ? 
             event.target : event.target.offsetParent;
-        if(target.tagName === 'BUTTON'){
-            switch(target.classList.contains(classNames.button)){
-                case true : 
-                        target.classList.add(classNames.buttonColoured);
-                        target.classList.remove(classNames.button)
-                    break;
-                case false : 
-                        target.classList.add(classNames.button);
-                        target.classList.remove(classNames.buttonColoured)
-                    break;
-                default: return;
-            }
+        switch(target.classList.contains(classNames.button)){
+            case true : 
+                    target.classList.add(classNames.buttonColoured);
+                    target.classList.remove(classNames.button)
+                break;
+            case false : 
+                    target.classList.add(classNames.button);
+                    target.classList.remove(classNames.buttonColoured)
+                break;
+            default: return;
         }
     }
 

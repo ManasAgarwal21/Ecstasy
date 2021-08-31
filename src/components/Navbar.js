@@ -1,23 +1,31 @@
 import React from "react";
-import MenuIcon from "@material-ui/core/Icon";
+import { IconButton } from '@material-ui/core';
+import MenuIcon from "@material-ui/icons/Menu";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import SearchBar from "./SearchBar";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
-const Navbar = (props) => {
+const Navbar = () => {
+
   return (
     <>
-      <div className="border border-black">
-        <div>
-          <MenuIcon className="" />
-          <span>BLISSMART</span>
+      <div className="flex justify-between items-center border mx-0 my-0 px-4">
+        <div className="flex items-center">
+          <IconButton aria-label="search">
+              <MenuIcon style={{fontSize:"30", color: 'black'}}/>
+          </IconButton>
+          <span className="font-bold text-green-600 text-xl mx-2">ECSTASY</span>
         </div>
         <SearchBar />
-        <div>
-          <ShoppingCartIcon />
-          <AccountCircleIcon />
+        <div className="flex items-center">
+          <IconButton className="mx-3" aria-label="search">
+              <ShoppingCartIcon style={{fontSize:"30", color: 'black'}}/>
+          </IconButton>
+          <IconButton className="mx-3" aria-label="search">
+              <AccountCircleIcon style={{fontSize:"30", color: 'black'}}/>
+          </IconButton>
         </div>
-      </div>
+      </div> 
     </>
   );
 };
