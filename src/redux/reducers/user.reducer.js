@@ -1,3 +1,4 @@
+import extend from 'lodash/extend';
 export const initialState = {
         firstName: '',
         lastName: '',
@@ -8,7 +9,7 @@ export const initialState = {
 
 export const userReducer = (state = initialState, action) => {
     if(action.type === "UPDATE_USER"){
-        return {...state,email:action.payload.email,password:action.payload.password};
+        return extend(state,action.payload);
     }
     return state;
 }
