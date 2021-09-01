@@ -6,12 +6,13 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(theme => ({
     root: {
       padding: '0px 4px',
-      margin: '8px 10px',
+      margin: '4px 10px',
       borderRadius: '5px',
       display: 'flex',
       alignItems: 'center',
       minWidth: '300px',
-      maxWidth: '400px'
+      maxWidth: '450px',
+      boxShadow: '0px 1px 3px rgba(0,0,0,0.3)'
     },
     input: {
       marginLeft: theme.spacing(1),
@@ -19,13 +20,13 @@ const useStyles = makeStyles(theme => ({
     },
     colouredIconButton: {
         color: theme.palette.primary.main,
-        padding : 10
+        padding : 6
     },
     iconButton: {
-      padding: 10,
+      padding: 6,
     },
     divider: {
-      height: 28,
+      height: 24,
       margin: 4,
     }
 }));
@@ -68,9 +69,9 @@ export default function SearchBar(){
     return(
         <React.Fragment>
             <Paper component="form" className={classNames.root}>
-            <IconButton className={classNames.colouredIconButton} aria-label="search">
-                <Search />
-            </IconButton>
+                <IconButton className={classNames.colouredIconButton} aria-label="search">
+                    <Search />
+                </IconButton>
             <InputBase
                 className={classNames.input}
                 placeholder="Search Products"

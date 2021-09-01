@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     },
     button: {
         margin: theme.spacing(1),
-        backgroundColor: 'rgba(0,0,0,0)',//'#4169e1'
+        backgroundColor: 'rgba(0,0,0,0)',
     },
     buttonColoured : {
         margin: theme.spacing(1),
@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const listItems = ['Men', 'Women', 'Health', 
+const listItems = ['All', 'Men', 'Women', 'Health', 
     'Mobiles', 'Grocery', 'Jewellery', 'Kids', 
     'Electronics', 'Furniture', 'Shoes', 'Books'];
 
@@ -59,7 +59,7 @@ export default function Categories(){
             <ul className={classNames.list}>
                 {listItems.map(item => {
                     return (
-                        <Button variant="contained" 
+                        <Button key={item} variant="contained" 
                             className={classNames.button}
                             onClick={handleClick}>
                             {item}
