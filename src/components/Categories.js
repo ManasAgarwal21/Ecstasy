@@ -10,6 +10,9 @@ const useStyles = makeStyles(theme => ({
         boxShadow: '0px 2px 8px -5px rgba(0,0,0,0.5)',
         '&::-webkit-scrollbar':{
             display: 'none'
+        },
+        [theme.breakpoints.down("xs")]: {
+            padding: '2px 8px',
         }
     },
     list: {
@@ -18,6 +21,11 @@ const useStyles = makeStyles(theme => ({
     button: {
         margin: theme.spacing(1),
         backgroundColor: 'rgba(0,0,0,0)',
+        [theme.breakpoints.down("xs")]: {
+            fontSize: '12px',
+            paddingLeft: '2px',
+            paddingRight: '2px',
+        }
     },
     buttonColoured : {
         margin: theme.spacing(1),

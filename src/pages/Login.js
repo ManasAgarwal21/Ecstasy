@@ -3,7 +3,7 @@ import { Avatar, Container,
     Typography, TextField, 
     Button, Checkbox,
     FormControlLabel, Icon,
-    Grid, Box, FormControl, 
+    Box, FormControl, 
     InputAdornment, IconButton,
     OutlinedInput, InputLabel } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -19,13 +19,22 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        [theme.breakpoints.down("xs")]: {
+            marginTop: theme.spacing(4),
+        }
     },
     avatar: {
         margin: theme.spacing(1),
         backgroundColor: theme.palette.primary.light,
     },
+    links: {
+        display: 'flex',
+        margin: '0px 10px',
+        justifyContent: 'space-between'
+    },
     text:{
         color: theme.palette.primary.dark,
+        textAlign: 'center',
         '&:hover': {
             textDecoration: 'underline'
         }
@@ -154,18 +163,14 @@ export default function Login({location}){
                         className={classNames.submit}>
                             Sign In
                     </Button>
-                    <Grid container>
-                        <Grid item xs>
-                            <Link to="/forgot" className={classNames.text}>
-                                {"Forgot password?"}
-                            </Link>
-                        </Grid>
-                        <Grid item>
-                            <Link to="/signup" className={classNames.text}>
-                                {"Don't have an account? Sign Up"}
-                            </Link>
-                        </Grid>
-                    </Grid>
+                    <div className={classNames.links}>
+                        <Link to="/forgot" className={classNames.text}>
+                            {"Forgot password?"}
+                        </Link>
+                        <Link to="/signup" className={classNames.text}>
+                            {"New user? Sign Up"}
+                        </Link>
+                    </div>
                 </form>
             </div>
             <Box mt={8}>

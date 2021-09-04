@@ -14,6 +14,10 @@ import {updateUser} from '../redux/actions/user.actions';
 const useStyles = makeStyles(theme => ({
    main: {
        marginTop: theme.spacing(8),
+       height: '100vh',
+       [theme.breakpoints.down("xs")]: {
+           marginTop: theme.spacing(2),
+       }
    },
    paper: {
        display: 'flex',
@@ -30,12 +34,13 @@ const useStyles = makeStyles(theme => ({
    },
    text:{
        color: theme.palette.primary.dark,
+       float: 'right',
        '&:hover': {
            textDecoration: 'underline'
        }
    },
    submit: {
-       margin: theme.spacing(3, 0, 2),
+       margin: theme.spacing(3, 0, 1),
    }
 }));
 
@@ -115,7 +120,7 @@ export default function Signup(props) {
                    Sign Up
                </Typography>
                <form className={classNames.form} noValidate>
-                   <Grid container spacing={2}>
+                   <Grid container spacing={1}>
                        <Grid item xs={6}>
                            <TextField
                                variant="outlined"
@@ -141,7 +146,7 @@ export default function Signup(props) {
                                value={user.lastName}
                                autoComplete="text"/>
                        </Grid>
-                       <Grid item xs={12} sm={6}>
+                       <Grid item xs={6}>
                            <TextField
                                variant="outlined"
                                required
@@ -153,7 +158,7 @@ export default function Signup(props) {
                                value={user.email}
                                autoComplete="email"/>
                        </Grid>
-                       <Grid item xs={12} sm={6}>
+                       <Grid item xs={6}>
                            <TextField
                                variant="outlined"
                                required
@@ -242,19 +247,13 @@ export default function Signup(props) {
                                    Sign Up
                            </Button>
                        </Grid>
-                       <Grid container>
-                        <Grid item xs>
-                        </Grid>
-                        <Grid item>
-                            <Link to="/signin" className={classNames.text}>
-                                {"Already have an account? Sign In"}
-                            </Link>
-                        </Grid>
                     </Grid>
-                   </Grid>
+                    <Link to="/signin" className={classNames.text}>
+                        {"Already have an account? Sign In"}
+                    </Link>
                </form>
            </div>
-           <Box mt={8}>
+           <Box mt={2}>
                <Typography variant="body2" color="textSecondary" align="center">
                    {'Copyright '} &copy; {'Ecstacy 2021.'}
                </Typography>
