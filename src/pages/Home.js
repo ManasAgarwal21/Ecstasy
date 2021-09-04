@@ -2,7 +2,7 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Categories from '../components/Categories';
-import CardComp from '../components/CardComp';
+import CardContainer from '../components/CardContainer';
 
 export default function Home({ location }){
   if (!location.state) {
@@ -13,7 +13,7 @@ export default function Home({ location }){
     <React.Fragment>
       <Navbar/>
       <Categories/>
-      <CardComp title="Trending Products"/>
+      <CardContainer title="Trending Products"/>
     </React.Fragment>
   );
 };
