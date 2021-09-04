@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 import Categories from '../components/Categories';
 import CardComp from '../components/CardComp';
 
-const Home = ({ location }) => {
+export default function Home({ location }){
   if (!location.state) {
     return <Redirect to="/login" />;
   }
@@ -17,5 +17,3 @@ const Home = ({ location }) => {
     </React.Fragment>
   );
 };
-
-export default Home;
