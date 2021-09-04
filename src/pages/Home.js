@@ -2,8 +2,7 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Categories from '../components/Categories';
-import CardContainer from '../components/CardContainer';
-import Footer from '../components/Footer';
+import CardComp from '../components/CardComp';
 
 const Home = ({ location }) => {
   if (!location.state) {
@@ -14,9 +13,7 @@ const Home = ({ location }) => {
     <React.Fragment>
       <Navbar/>
       <Categories/>
-      <CardContainer title="Trending Products"/>
-      <CardContainer title="Explore Nearby Products" style={{marginTop:50}}/>
-      <Footer />
+      <CardComp title="Trending Products"/>
     </React.Fragment>
   );
 };
