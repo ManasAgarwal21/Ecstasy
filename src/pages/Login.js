@@ -1,50 +1,60 @@
-import React, {useEffect, useState} from 'react';
-import { Avatar, Container, 
-    Typography, TextField, Grid,
-    Button, Checkbox,
-    FormControlLabel, Icon,
-    Box, FormControl, 
-    InputAdornment, IconButton,
-    OutlinedInput, InputLabel } from "@material-ui/core";
+import React, { useEffect, useState } from "react";
+import {
+  Avatar,
+  Container,
+  Typography,
+  TextField,
+  Button,
+  Checkbox,
+  FormControlLabel,
+  Icon,
+  Box,
+  FormControl,
+  InputAdornment,
+  IconButton,
+  OutlinedInput,
+  InputLabel,
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link, Redirect } from "react-router-dom";
 import { LockOutlined, Visibility, VisibilityOff } from "@material-ui/icons";
 import { useSelector, useDispatch } from "react-redux";
 import { getData } from "../redux/selectors/user.selectors";
 import { updateUser } from "../redux/actions/user.actions";
-const useStyles = makeStyles(theme => ({
-    paper: {
-        marginTop: theme.spacing(8),
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        [theme.breakpoints.down("xs")]: {
-            marginTop: theme.spacing(4),
-        }
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(4),
     },
-    avatar: {
-        margin: theme.spacing(1),
-        backgroundColor: theme.palette.primary.light,
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.primary.light,
+  },
+  links: {
+    display: "flex",
+    margin: "0px 10px",
+    justifyContent: "space-between",
+  },
+  text: {
+    color: theme.palette.primary.dark,
+    textAlign: "center",
+    "&:hover": {
+      textDecoration: "underline",
     },
-    links: {
-        display: 'flex',
-        margin: '0px 10px',
-        justifyContent: 'space-between'
-    },
-    text:{
-        color: theme.palette.primary.dark,
-        textAlign: 'center',
-        '&:hover': {
-            textDecoration: 'underline'
-        }
-    },
-    form: {
-        width: '100%', // Fix IE 11 issue.
-        marginTop: theme.spacing(1),
-    },
-    submit: {
-        margin: theme.spacing(3, 0, 2),
-    }
+  },
+  form: {
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
 }));
 
 export default function Login({ location }) {
@@ -165,18 +175,14 @@ export default function Login({ location }) {
           >
             Sign In
           </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link to="/forgot" className={classNames.text}>
-                {"Forgot password?"}
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link to="/signup" className={classNames.text}>
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid>
-          </Grid>
+          <div className={classNames.links}>
+            <Link to="/forgot" className={classNames.text}>
+              {"Forgot password?"}
+            </Link>
+            <Link to="/signup" className={classNames.text}>
+              {"New user? Sign Up"}
+            </Link>
+          </div>
         </form>
       </div>
       <Box mt={8}>

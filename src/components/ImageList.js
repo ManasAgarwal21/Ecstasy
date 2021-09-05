@@ -5,7 +5,7 @@ import ImageListItem from "@material-ui/core/ImageListItem";
 import ProductCard from "./ProductCard";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import "../styles/App.css"
+import "../styles/App.css";
 
 const selectedList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 11, 1, 1];
 
@@ -19,12 +19,14 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "nowrap",
     transform: "translateZ(0)",
     overflow: "auto",
+    scrollBehavior: "smooth",
   },
 }));
 export default function SingleLineImageList() {
   const classes = useStyles();
+
   const [leftVar, setLeftVar] = React.useState(0);
-  const [maxLeft,setMaxLeft] = React.useState();
+  const [maxLeft, setMaxLeft] = React.useState();
 
   return (
     <div className={classes.root}>
@@ -39,7 +41,7 @@ export default function SingleLineImageList() {
       >
         <ArrowBackIcon fontSize="small" />
       </button>
-      <ImageList className={classes.imageList} cols={6} id="imageList" gap={0}>
+      <ImageList className={classes.imageList} cols={6} id="imageList" gap={1}>
         {selectedList.map((item, index) => (
           <ImageListItem
             key={index}
@@ -49,17 +51,26 @@ export default function SingleLineImageList() {
               marginBottom: 5,
             }}
           >
-            <ProductCard />
+            <ProductCard
+              props={{
+                name: "product name",
+                price: `${item}`,
+              }}
+            />
           </ImageListItem>
         ))}
       </ImageList>
       <button
-        className={`z-10 right-0 px-6 py-16 bg-gray-100 border top-28 ${maxLeft === leftVar ? "hidden" : "absolute"}`}
+        className={`z-10 right-0 px-6 py-16 bg-gray-100 border top-28 ${
+          maxLeft === leftVar ? "hidden" : "absolute"
+        }`}
         onClick={() => {
           document.getElementById("imageList").scrollLeft += 160;
           setLeftVar(document.getElementById("imageList").scrollLeft);
-          setMaxLeft(document.getElementById("imageList").scrollWidth - document.getElementById("imageList").clientWidth);
-
+          setMaxLeft(
+            document.getElementById("imageList").scrollWidth -
+              document.getElementById("imageList").clientWidth
+          );
         }}
       >
         <ArrowForwardIcon fontSize="small" />

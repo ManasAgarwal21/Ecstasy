@@ -3,16 +3,30 @@ import { Container, Typography, Grid, IconButton } from "@material-ui/core";
 import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import ProductCard from "./ProductCard";
-import ImageList from './ImageList';
+import ImageList from "./ImageList";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  container: {
+    padding: "20px",
+  },
+  head: {
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: "0px 15px",
+  },
+}));
 
 const selectedList = [1, 2, 3, 4, 5, 6, 7];
+
 const CardContainer = ({ title }) => {
+  const classNames = useStyles();
   const [openCardContainer, setOpenCardConatiner] = React.useState(false);
 
   return (
     <Container disableGutters>
-      <Grid container spacing={0}>
-        <Grid item container alignItems="center" justifyContent="space-between">
+      <Grid container spacing={0} className={classNames.container}>
+        <Grid item container className={classNames.head}>
           <Typography variant="h6">{title}</Typography>
           <button onClick={() => setOpenCardConatiner(!openCardContainer)}>
             <IconButton>
@@ -29,7 +43,12 @@ const CardContainer = ({ title }) => {
             {selectedList.map((item, index) => {
               return (
                 <Grid item xs={2} key={index}>
-                  <ProductCard />
+                  <ProductCard
+                    props={{
+                      name: "product name",
+                      price: `${item}`,
+                    }}
+                  />
                 </Grid>
               );
             })}
