@@ -29,7 +29,7 @@ export default function SingleLineImageList() {
   return (
     <div className={classes.root}>
       <button
-        className={`z-10 left-0 px-6 py-16 bg-white border top-28 ${
+        className={`z-10 left-0 px-6 py-16 bg-gray-100 border top-28 ${
           leftVar === 0 ? "hidden" : "absolute"
         }`}
         onClick={() => {
@@ -54,7 +54,7 @@ export default function SingleLineImageList() {
         ))}
       </ImageList>
       <button
-        className={`z-10 right-0 px-6 py-16 bg-white border top-28 ${maxLeft === leftVar ? "hidden" : "absolute"}`}
+        className={`z-10 right-0 px-6 py-16 bg-gray-100 border top-28 ${maxLeft === leftVar ? "hidden" : "absolute"}`}
         onClick={() => {
           document.getElementById("imageList").scrollLeft += 160;
           setLeftVar(document.getElementById("imageList").scrollLeft);
