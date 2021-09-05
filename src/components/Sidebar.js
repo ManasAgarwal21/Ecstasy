@@ -18,6 +18,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 const useStyles = makeStyles({
   list: {
     width: 250,
+    padding:0,
   },
   fullList: {
     width: "auto",
@@ -25,6 +26,9 @@ const useStyles = makeStyles({
   root: {
     width: "100%",
     maxWidth: 360,
+  },
+  accordianDetails: {
+    padding: "0px",
   },
 });
 
@@ -38,7 +42,11 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
         component="nav"
         aria-labelledby="Shop By Category"
         subheader={
-          <ListSubheader component="div" id="shopByCategory" style={{position:"static"}}>
+          <ListSubheader
+            component="div"
+            id="shopByCategory"
+            style={{ position: "static" }}
+          >
             Shop By Category
           </ListSubheader>
         }
@@ -60,10 +68,17 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
           >
             <Typography>See All</Typography>
           </AccordionSummary>
-          <AccordionDetails>
-            <List style={{ marginLeft: "-18px", marginTop: "-30px" }}>
+          <AccordionDetails
+            classes={{
+              root: classes.accordianDetails,
+            }}
+          >
+            <List classes={{ root: classes.list }}>
               {["MEN", "WOMEN", "HEALTH", "MOBILES"].map((text, index) => (
-                <ListItem button key={text}>
+                <ListItem
+                  button
+                  key={text}
+                >
                   <ListItemIcon>
                     {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                   </ListItemIcon>
