@@ -248,7 +248,7 @@ export default function Signup(props) {
                            </Button>
                        </Grid>
                     </Grid>
-                    <Link to="/signin" className={classNames.text}>
+                    <Link to="/login" className={classNames.text}>
                         {"Already have an account? Sign In"}
                     </Link>
                </form>

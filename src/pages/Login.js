@@ -107,7 +107,6 @@ export default function Login({ location }) {
       />
     )
   }
-  console.log(location);
 
   return(
     <Container component="main" maxWidth="xs">

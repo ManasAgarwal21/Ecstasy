@@ -4,7 +4,7 @@ import {makeStyles} from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
     root: {
-        padding: '8px 16px',
+        padding: '2px 16px',
         display: 'block',
         overflow: 'scroll',
         boxShadow: '0px 2px 8px -5px rgba(0,0,0,0.5)',
@@ -35,6 +35,11 @@ const useStyles = makeStyles(theme => ({
             margin: theme.spacing(1),
             backgroundColor: 'rgb(65, 105, 223)',
             color : '#ffffff',
+        },
+        [theme.breakpoints.down("xs")]: {
+            fontSize: '12px',
+            paddingLeft: '2px',
+            paddingRight: '2px',
         }
     }
 }))

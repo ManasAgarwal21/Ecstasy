@@ -19,10 +19,12 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "nowrap",
     transform: "translateZ(0)",
     overflow: "auto",
+    scrollBehavior: 'smooth',
   },
 }));
 export default function SingleLineImageList() {
   const classes = useStyles();
+
   const [leftVar, setLeftVar] = React.useState(0);
   const [maxLeft,setMaxLeft] = React.useState();
 
@@ -39,7 +41,7 @@ export default function SingleLineImageList() {
       >
         <ArrowBackIcon fontSize="small" />
       </button>
-      <ImageList className={classes.imageList} cols={6} id="imageList" gap={0}>
+      <ImageList className={classes.imageList} cols={6} id="imageList" gap={1}>
         {selectedList.map((item, index) => (
           <ImageListItem
             key={index}
@@ -49,7 +51,10 @@ export default function SingleLineImageList() {
               marginBottom: 5,
             }}
           >
-            <ProductCard />
+            <ProductCard props={{
+              name: 'product name',
+              price:`${item}`
+            }}/>
           </ImageListItem>
         ))}
       </ImageList>
