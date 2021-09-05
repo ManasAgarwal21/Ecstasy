@@ -2,7 +2,7 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Categories from '../components/Categories';
-import CardContainer from '../components/CardContainer';
+import CardContainer from '../components/CardContainer/CardContainer';
 import Sidebar from '../components/Sidebar';
 
 export default function Home({ location }){

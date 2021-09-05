@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Typography, Grid, IconButton } from "@material-ui/core";
 import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
-import ProductCard from "./ProductCard";
+import ProductCard from "../ProductCard";
 import ImageList from './ImageList';
 
 const selectedList = [1, 2, 3, 4, 5, 6, 7];

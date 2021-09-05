@@ -2,16 +2,16 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import ImageList from "@material-ui/core/ImageList";
 import ImageListItem from "@material-ui/core/ImageListItem";
-import ProductCard from "./ProductCard";
+import ProductCard from "../ProductCard";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import "../styles/App.css"
+import "../../styles/App.css";
 
 const selectedList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 11, 1, 1];
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    overflow: "hidden",
+    overflow:"hidden",
     position: "relative",
     display: "flex",
   },
@@ -29,7 +29,7 @@ export default function SingleLineImageList() {
   return (
     <div className={classes.root}>
       <button
-        className={`z-10 left-0 px-6 py-16 bg-gray-100 border top-28 ${
+        className={`z-20 left-0 bg-gray-100 border top-36 px-6 py-6 rounded-full ${
           leftVar === 0 ? "hidden" : "absolute"
         }`}
         onClick={() => {
@@ -54,7 +54,7 @@ export default function SingleLineImageList() {
         ))}
       </ImageList>
       <button
-        className={`z-10 right-0 px-6 py-16 bg-gray-100 border top-28 ${maxLeft === leftVar ? "hidden" : "absolute"}`}
+        className={`z-10 right-0 bg-gray-100 border top-36 px-6 py-6 rounded-full ${maxLeft === leftVar ? "hidden" : "absolute"}`}
         onClick={() => {
           document.getElementById("imageList").scrollLeft += 160;
           setLeftVar(document.getElementById("imageList").scrollLeft);
