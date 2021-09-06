@@ -21,4 +21,4 @@ export default function Home({ location }){
       <CardContainer title="Trending Products"/>
     </React.Fragment>
   );
-};
+}

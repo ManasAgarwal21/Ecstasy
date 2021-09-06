@@ -32,6 +32,12 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  sticky: {
+    position: "sticky",
+    top: "0px",
+    zIndex: "15",
+    backgroundColor: "white",
+  },
   rightSection: {
     display: "flex",
     justifyContent: "space-evenly",
@@ -40,6 +46,9 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "300px",
     [theme.breakpoints.down("sm")]: {
       maxWidth: "280px",
+    },
+    [theme.breakpoints.down("xs")]: {
+      maxWidth: "250px",
     },
   },
   leftSection: {
@@ -55,19 +64,10 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: theme.spacing(14),
     minWidth: theme.spacing(8),
   },
-  itemLanguage: {
-    fontSize: "12px",
-    width: theme.spacing(4.5),
-    "& > *": {
-      paddingRight: "0px",
-    },
-    [theme.breakpoints.down("xs")]: {
-      fontSize: "10px",
-    },
-  },
   title: {
     fontWeight: 600,
     color: "rgb(50,200,140)",
+    fontSize: "20px",
     cursor: "default",
     margin: "0px",
     [theme.breakpoints.down("xs")]: {
@@ -112,7 +112,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     borderBottom: "1px solid rgba(0,0,0,0.05)",
     alignItems: "center",
-    paddingRight: "10px",
+    position: "relative",
+    padding: "10px",
+    paddingLeft: "none",
     [theme.breakpoints.down("xs")]: {
       display: "flex",
     },
@@ -122,27 +124,20 @@ const useStyles = makeStyles((theme) => ({
 const Navbar = (props) => {
   const classNames = useStyles();
   const [address, setAddress] = useState("default");
-  const [language, setLanguage] = useState("English");
 
   const handleAddressChange = (event) => {
     console.log(event.target);
     setAddress(event.target.value);
   };
 
-  const handleLanguageChange = (event) => {
-    setLanguage(event.target.value);
-  };
-
   return (
-    <React.Fragment>
+    <div className={classNames.sticky}>
       <div className={classNames.root}>
         <Grid className={classNames.leftSection}>
           <IconButton
             aria-label="drawer"
             className={classNames.iconButton}
-            onClick={() => {
-              props.setIsSidebarOpen((state) => !state);
-            }}
+            onClick={() => props.setIsSidebarOpen((state) => !state)}
           >
             <MenuIcon className={classNames.icon} />
           </IconButton>
@@ -166,16 +161,6 @@ const Navbar = (props) => {
           </FormControl>
         </Grid>
         <Grid className={classNames.rightSection}>
-          <FormControl>
-            <Select
-              onChange={handleLanguageChange}
-              value={language}
-              className={classNames.itemLanguage}
-            >
-              <MenuItem value={"English"}>EN</MenuItem>
-              <MenuItem value={"Hindi"}>HI</MenuItem>
-            </Select>
-          </FormControl>
           <Button
             className={classNames.button}
             startIcon={<AssignmentTurnedInIcon className={classNames.icon} />}
@@ -219,7 +204,7 @@ const Navbar = (props) => {
           </Select>
         </FormControl>
       </Grid>
-    </React.Fragment>
+    </div>
   );
 };
 
