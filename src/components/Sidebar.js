@@ -19,7 +19,7 @@ import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 const useStyles = makeStyles({
   list: {
     width: 250,
-    padding: 0,
+    padding: "0px",
   },
   fullList: {
     width: "auto",
@@ -35,8 +35,10 @@ const useStyles = makeStyles({
   accordianDetails: {
     padding: "0px",
   },
-  typographyText:{
-    fontWeight:1000,
+  typographyText: {
+    fontWeight: 800,
+    color: "white",
+    padding: "4px 0px",
   },
 });
 
@@ -68,9 +70,7 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
             <ListItemText primary={text} />
           </ListItem>
         ))}
-        <Accordion
-          expanded={isAccordianOpen}
-        >
+        <Accordion expanded={isAccordianOpen}>
           <div className={`${isAccordianOpen ? "hidden" : "static"}`}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
@@ -88,7 +88,15 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
             className={`${isAccordianOpen ? "-mt-4" : ""}`}
           >
             <List classes={{ root: classes.listDetails }}>
-              {["GROCERY", "JWELLERY", "KIDS", "ELECTRONICS","FURNITURE","SHOES","BOOKS"].map((text, index) => (
+              {[
+                "GROCERY",
+                "JEWELLERY",
+                "KIDS",
+                "ELECTRONICS",
+                "FURNITURE",
+                "SHOES",
+                "BOOKS",
+              ].map((text, index) => (
                 <ListItem button key={text}>
                   <ListItemIcon>
                     {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -162,18 +170,18 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
 
   return (
     <div>
-      <React.Fragment>
-        <Drawer
-          anchor="left"
-          open={isSidebarOpen}
-          onClose={() => setIsSidebarOpen(false)}
-        >
-          <div className="sticky top-0 z-20 bg-gray-100 text-center py-2">
-            <Typography className={classes.typographyText}>Welcome to Ecstasy</Typography>
-          </div>
-          {list()}
-        </Drawer>
-      </React.Fragment>
+      <Drawer
+        anchor="left"
+        open={isSidebarOpen}
+        onClose={() => setIsSidebarOpen(false)}
+      >
+        <div className="sticky top-0 z-20 bg-blue-600 text-center py-2">
+          <Typography className={classes.typographyText}>
+            Welcome to Ecstasy
+          </Typography>
+        </div>
+        {list()}
+      </Drawer>
     </div>
   );
 };
