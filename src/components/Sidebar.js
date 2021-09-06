@@ -35,6 +35,9 @@ const useStyles = makeStyles({
   accordianDetails: {
     padding: "0px",
   },
+  typographyText:{
+    fontWeight:1000,
+  },
 });
 
 const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
@@ -165,6 +168,9 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
           open={isSidebarOpen}
           onClose={() => setIsSidebarOpen(false)}
         >
+          <div className="sticky top-0 z-20 bg-gray-100 text-center py-2">
+            <Typography className={classes.typographyText}>Welcome to Ecstasy</Typography>
+          </div>
           {list()}
         </Drawer>
       </React.Fragment>
