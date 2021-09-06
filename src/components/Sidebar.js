@@ -14,11 +14,12 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 
 const useStyles = makeStyles({
   list: {
     width: 250,
-    padding:0,
+    padding: 0,
   },
   fullList: {
     width: "auto",
@@ -27,14 +28,18 @@ const useStyles = makeStyles({
     width: "100%",
     maxWidth: 360,
   },
+  listDetails: {
+    padding: "0px",
+    width: "100%",
+  },
   accordianDetails: {
     padding: "0px",
   },
 });
 
 const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
-  console.log(isSidebarOpen);
   const classes = useStyles();
+  const [isAccordianOpen, setIsAccordianOpen] = React.useState(false);
 
   const list = () => (
     <div className={classes.list} role="presentation">
@@ -60,25 +65,28 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
             <ListItemText primary={text} />
           </ListItem>
         ))}
-        <Accordion>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="See All Categories"
-            id="seeAllCategories"
-          >
-            <Typography>See All</Typography>
-          </AccordionSummary>
+        <Accordion
+          expanded={isAccordianOpen}
+        >
+          <div className={`${isAccordianOpen ? "hidden" : "static"}`}>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="See All Categories"
+              id="seeAllCategories"
+              onClick={() => setIsAccordianOpen((state) => !state)}
+            >
+              <Typography>See All</Typography>
+            </AccordionSummary>
+          </div>
           <AccordionDetails
             classes={{
               root: classes.accordianDetails,
             }}
+            className={`${isAccordianOpen ? "-mt-4" : ""}`}
           >
-            <List classes={{ root: classes.list }}>
-              {["MEN", "WOMEN", "HEALTH", "MOBILES"].map((text, index) => (
-                <ListItem
-                  button
-                  key={text}
-                >
+            <List classes={{ root: classes.listDetails }}>
+              {["GROCERY", "JWELLERY", "KIDS", "ELECTRONICS","FURNITURE","SHOES","BOOKS"].map((text, index) => (
+                <ListItem button key={text}>
                   <ListItemIcon>
                     {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                   </ListItemIcon>
@@ -87,6 +95,16 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
               ))}
             </List>
           </AccordionDetails>
+          <div className={`${isAccordianOpen ? "static" : "hidden"}`}>
+            <AccordionSummary
+              expandIcon={<ExpandLessIcon />}
+              aria-controls="See All Categories"
+              id="seeAllCategories"
+              onClick={() => setIsAccordianOpen((state) => !state)}
+            >
+              <Typography>See Less</Typography>
+            </AccordionSummary>
+          </div>
         </Accordion>
       </List>
       <List
