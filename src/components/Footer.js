@@ -7,59 +7,119 @@ import { Link } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    marginTop:20,
+    marginTop: 20,
   },
   container: {
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingRight: 10,
-    paddingLeft: 10,
+    padding: "30px",
+    display: "flex",
+    justifyContent: "space-evenly",
+  },
+  heading: {
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "15px",
+    },
+  },
+  data: {
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "13px",
+    },
   },
 }));
+
+const footer = [
+  {
+    name: "GET INFO",
+    data: [
+      "About Us",
+      "Contact Us",
+      "Return Policy",
+      "Terms Of Use",
+      "Privacy Policy",
+    ],
+  },
+  {
+    name: "HELP",
+    data: ["Orders", "Payments", "Shipping", "Cancellation & Returns", "FAQ"],
+  },
+  {
+    name: "SOCIAL",
+    data: ["Facebook", "Instagram", "Twitter", "Linkedin"],
+  },
+  {
+    name: "CONTACT DETAILS",
+    data: [
+      "H-Block hostel, gla university, mathura 281406",
+      "Uttar Pradesh, India",
+      "Mobile : 8750388075",
+      "Mail : ecstasyteam@gmail.com",
+    ],
+  },
+];
 
 function Footer() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" style={{ backgroundColor: "#000033" }}>
+      <AppBar position="static">
+        <Grid container className={classes.container}>
+          {footer.map((item) => {
+            return (
+              <Grid
+                item
+                container
+                justifyContent="space-around"
+                xs={6}
+                sm={2}
+                style={{ fontSize: 15, marginBottom: "20px" }}
+                direction="column"
+              >
+                <Grid item>
+                  <Link
+                    to="/dev"
+                    className={`font-bold text-lg ${classes.heading}`}
+                  >
+                    {item.name}
+                  </Link>
+                </Grid>
+                {item.data.map((data) => {
+                  return (
+                    <Grid item>
+                      <Link to="/dev" className={`text-sm ${classes.data}`}>
+                        {data}
+                      </Link>
+                    </Grid>
+                  );
+                })}
+              </Grid>
+            );
+          })}
+        </Grid>
         <Grid
+          item
           container
-          className={classes.container}
-          justifyContent="space-around"
+          style={{
+            backgroundColor: "rgb(10, 38, 118)",
+            height: "80px",
+            padding: "10px",
+          }}
         >
-          <Grid item xs={5} />
-          <Grid
-            item
-            container
-            justifyContent="space-around"
-            xs={2}
-            style={{ fontSize: 15 }}
-            spacing={1}
-            direction="column"
-          >
-            <Grid item>
-              <Link to="#">About</Link>
-            </Grid>
-            <Grid item>
-              <Link to="#">Orders</Link>
-            </Grid>
-            <Grid item>
-              <Link to="#">Change Password</Link>
-            </Grid>
-            <Grid item>
-              <Link to="#">Order History</Link>
-            </Grid>
-            <Grid item>
-              <Link to="#">Logout</Link>
-            </Grid>
-          </Grid>
-          <Grid item xs={1}>
-            <Typography variant="h4" style={{ marginTop: 50 }}>
+          <Grid item xs={12}>
+            <Typography variant="h5" style={{ textAlign: "center" }}>
               Ecstasy
             </Typography>
           </Grid>
-          <Grid item xs={4} />
+          <Grid item xs={12}>
+            <Typography
+              variant="body2"
+              style={{
+                textAlign: "center",
+                fontSize: "15px",
+              }}
+            >
+              &copy; 2021 Ecstasy.com
+            </Typography>
+          </Grid>
         </Grid>
       </AppBar>
     </div>
