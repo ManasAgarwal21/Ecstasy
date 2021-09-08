@@ -2,6 +2,7 @@ import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import Divider from "@material-ui/core/Divider";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
@@ -60,7 +61,7 @@ const PopUp = ({ setAnchorEl, anchorEl, setIsDisable }) => {
           <ListItemText primary="Manas Agarwal" />
           <span className="-mt-2 text-gray-600" style={{fontSize:"13px",marginBottom:"5px"}}>Customer</span>
         </div>
-        <div className="w-full border" style={{borderColor:"royalblue"}} />
+        <Divider style={{backgroundColor: "royalblue"}}/>
         <StyledMenuItem>
           <ListItemIcon>
             <ShoppingCartIcon fontSize="medium" />

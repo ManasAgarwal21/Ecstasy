@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
+import Chip from "@material-ui/core/Chip";
 import IconButton from "@material-ui/core/IconButton";
 import Rating from "@material-ui/lab/Rating";
 import Typography from "@material-ui/core/Typography";
@@ -11,25 +12,30 @@ import image from "./../images/logo192.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "180px",
-    margin: theme.spacing(2),
+    width: "160px",
+    margin: theme.spacing(1),
     display: "flex",
     justifyContent: "space-around",
     flexDirection: "column",
-    paddingLeft: theme.spacing(1),
-    paddingRight: "4px",
-    paddingTop: "4px",
+    position: "relative",
+    padding: "4px",
+    paddingBottom: "0px",
     boxShadow: "1px 1px 8px rgba(0,0,0,0.2)",
   },
   img: {
-    width: "160px",
-    maxHeight: "160px",
+    width: "140px",
+    margin: "0px auto",
+    height: "140px",
   },
   icons: {
-    padding: "0px",
+    padding: "4px",
     margin: "0px",
+    position: "absolute",
+    top: "0px",
+    right: "0px",
+    width: "100%",
     display: "flex",
-    justifyContent: "flex-end",
+    justifyContent: "space-between",
   },
   iconButton: {
     color: "rgb(50,50,50,0.5)",
@@ -45,11 +51,11 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.secondary.main,
   },
   title: {
-    fontSize: "17px",
+    fontSize: "18px",
     color: "#000",
   },
   content: {
-    padding: theme.spacing(1),
+    padding: theme.spacing(0,1,0),
   },
 }));
 
@@ -60,6 +66,7 @@ const ProductCard = ({ props }) => {
     name: "Product name",
     seller: "Sample seller",
     rating: 2.5,
+    onSale: false,
     isFavourite: false,
     price: 0.0,
     filter: ["all"],
@@ -77,6 +84,18 @@ const ProductCard = ({ props }) => {
   return (
     <Card className={classNames.root}>
       <CardActions className={classNames.icons}>
+        {(product.onSale) ?
+          <Chip variant="default" 
+              size="small" 
+              label="Sale"
+              style={{backgroundColor: "red",
+                      // backgroundColor: "#34af89",
+                      opacity: "0.7",
+                      color: "white",
+                      borderRadius: "3px"}} />
+          :
+          <div></div>
+        }
         <IconButton
           aria-label="add to favourites"
           onClick={handleFavClick}
@@ -97,7 +116,10 @@ const ProductCard = ({ props }) => {
           precision={0.1}
           readOnly
         />
-        <Typography variant="h6" color="#000" component="p">
+        <Typography variant="body1"
+                    style={{color: "000",
+                            fontWeight: "500"}} 
+                    component="p">
           {`₹ ${product.price}`}
         </Typography>
         <Typography variant="body2" color="textSecondary" component="p">
