@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   imageList: {
     flexWrap: "nowrap",
     transform: "translateZ(0)",
-    overflow: "auto",
+    overflow: "scroll",
     scrollBehavior: "smooth",
   },
 }));
@@ -41,19 +41,18 @@ export default function SingleLineImageList() {
       >
         <ArrowBackIcon fontSize="small" />
       </button>
-      <ImageList className={classes.imageList} cols={6} id="imageList" gap={1}>
+      <ImageList className={classes.imageList} cols={"auto"} id="imageList">
         {selectedList.map((item, index) => (
           <ImageListItem
             key={index}
             style={{
               height: "auto",
-              marginTop: 5,
-              marginBottom: 5,
+              margin: "5px 0px",
             }}
           >
             <ProductCard
               props={{
-                name: "product name",
+                name: "Product name",
                 price: `${item}`,
               }}
             />
