@@ -16,6 +16,7 @@ import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Badge from "@material-ui/core/Badge";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import PopUp from "./PopUp";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -124,6 +125,8 @@ const useStyles = makeStyles((theme) => ({
 const Navbar = (props) => {
   const classNames = useStyles();
   const [address, setAddress] = useState("default");
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [isDisable, setIsDisable] = useState(false);
 
   const handleAddressChange = (event) => {
     console.log(event.target);
@@ -182,7 +185,17 @@ const Navbar = (props) => {
               </Badge>
             </IconButton>
           </Link>
-          <IconButton aria-label="profile" className={classNames.iconButton}>
+          <IconButton
+            aria-label="profile"
+            className={classNames.iconButton}
+            onClick={(event) => {
+              if (!isDisable) {
+                setAnchorEl(event.currentTarget);
+                setIsDisable(true);
+              }
+            }}
+          >
+            <PopUp setAnchorEl={setAnchorEl} anchorEl={anchorEl} setIsDisable={setIsDisable}/>
             <AccountCircleIcon className={classNames.icon} />
           </IconButton>
         </Grid>
