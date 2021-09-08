@@ -22,7 +22,7 @@ export default function Home({ location }) {
       />
       <Categories />
       <CardContainer title="Trending Products" />
-      <Footer/>
+      <Footer />
     </React.Fragment>
   );
 }
