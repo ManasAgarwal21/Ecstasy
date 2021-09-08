@@ -6,7 +6,7 @@ import Divider from "@material-ui/core/Divider";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import SettingsIcon from "@material-ui/icons/Settings";
@@ -39,7 +39,7 @@ const StyledMenuItem = withStyles((theme) => ({
         color: theme.palette.common.white,
       },
     },
-    minWidth:"200px",
+    minWidth: "200px",
   },
 }))(MenuItem);
 
@@ -59,9 +59,14 @@ const PopUp = ({ setAnchorEl, anchorEl, setIsDisable }) => {
         <div className="flex flex-col items-center w-full">
           <AccountCircleIcon fontSize="large" />
           <ListItemText primary="Manas Agarwal" />
-          <span className="-mt-2 text-gray-600" style={{fontSize:"13px",marginBottom:"5px"}}>Customer</span>
+          <span
+            className="-mt-2 text-gray-600"
+            style={{ fontSize: "13px", marginBottom: "5px" }}
+          >
+            Customer
+          </span>
         </div>
-        <Divider style={{backgroundColor: "royalblue"}}/>
+        <Divider style={{ backgroundColor: "royalblue" }} />
         <StyledMenuItem>
           <ListItemIcon>
             <ShoppingCartIcon fontSize="medium" />

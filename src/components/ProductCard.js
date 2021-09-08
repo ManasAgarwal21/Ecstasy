@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#000",
   },
   content: {
-    padding: theme.spacing(0,1,0),
+    padding: theme.spacing(0, 1, 0),
   },
 }));
 
@@ -84,18 +84,22 @@ const ProductCard = ({ props }) => {
   return (
     <Card className={classNames.root}>
       <CardActions className={classNames.icons}>
-        {(product.onSale) ?
-          <Chip variant="default" 
-              size="small" 
-              label="Sale"
-              style={{backgroundColor: "red",
-                      // backgroundColor: "#34af89",
-                      opacity: "0.7",
-                      color: "white",
-                      borderRadius: "3px"}} />
-          :
+        {product.onSale ? (
+          <Chip
+            variant="default"
+            size="small"
+            label="Sale"
+            style={{
+              backgroundColor: "red",
+              // backgroundColor: "#34af89",
+              opacity: "0.7",
+              color: "white",
+              borderRadius: "3px",
+            }}
+          />
+        ) : (
           <div></div>
-        }
+        )}
         <IconButton
           aria-label="add to favourites"
           onClick={handleFavClick}
@@ -116,10 +120,11 @@ const ProductCard = ({ props }) => {
           precision={0.1}
           readOnly
         />
-        <Typography variant="body1"
-                    style={{color: "000",
-                            fontWeight: "500"}} 
-                    component="p">
+        <Typography
+          variant="body1"
+          style={{ color: "000", fontWeight: "500" }}
+          component="p"
+        >
           {`₹ ${product.price}`}
         </Typography>
         <Typography variant="body2" color="textSecondary" component="p">
