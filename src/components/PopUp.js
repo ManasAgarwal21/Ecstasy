@@ -58,7 +58,7 @@ const PopUp = ({ setAnchorEl, anchorEl, setIsDisable }) => {
         <div className="flex flex-col items-center w-full">
           <AccountCircleIcon fontSize="large" />
           <ListItemText primary="Manas Agarwal" />
-          <span className="-mt-2 text-gray-600" style={{fontSize:"13px"}}>Customer</span>
+          <span className="-mt-2 text-gray-600" style={{fontSize:"13px",marginBottom:"5px"}}>Customer</span>
         </div>
         <div className="w-full border" style={{borderColor:"royalblue"}} />
         <StyledMenuItem>
