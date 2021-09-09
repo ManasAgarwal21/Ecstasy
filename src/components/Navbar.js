@@ -71,6 +71,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "20px",
     cursor: "default",
     margin: "0px",
+    [theme.breakpoints.up("sm")]: {
+      marginLeft: "20px",
+    },
     [theme.breakpoints.down("xs")]: {
       fontSize: "15px",
     },
@@ -78,6 +81,13 @@ const useStyles = makeStyles((theme) => ({
   iconButton: {
     marginLeft: "0px",
     marginRight: "0px",
+  },
+  menuButton: {
+    marginLeft: "0px",
+    marginRight: "0px",
+    [theme.breakpoints.up("sm")]: {
+      display: "none",
+    },
   },
   icon: {
     color: "black",
@@ -139,7 +149,7 @@ const Navbar = (props) => {
         <Grid className={classNames.leftSection}>
           <IconButton
             aria-label="drawer"
-            className={classNames.iconButton}
+            className={classNames.menuButton}
             onClick={() => props.setIsSidebarOpen((state) => !state)}
           >
             <MenuIcon className={classNames.icon} />
@@ -195,7 +205,11 @@ const Navbar = (props) => {
               }
             }}
           >
-            <PopUp setAnchorEl={setAnchorEl} anchorEl={anchorEl} setIsDisable={setIsDisable}/>
+            <PopUp
+              setAnchorEl={setAnchorEl}
+              anchorEl={anchorEl}
+              setIsDisable={setIsDisable}
+            />
             <AccountCircleIcon className={classNames.icon} />
           </IconButton>
         </Grid>

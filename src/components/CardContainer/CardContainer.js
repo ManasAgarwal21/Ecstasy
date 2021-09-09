@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Typography, Grid, IconButton } from "@material-ui/core";
+import { Paper, Typography, Grid, IconButton } from "@material-ui/core";
 import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import ProductCard from "../ProductCard";
@@ -8,6 +8,9 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   container: {
+    margin: "20px",
+    padding: "0px 10px",
+    boxShadow: "none",
   },
   head: {
     alignItems: "center",
@@ -23,9 +26,9 @@ const CardContainer = ({ title }) => {
   const [openCardContainer, setOpenCardConatiner] = React.useState(false);
 
   return (
-    <Container disableGutters>
-      <Grid container spacing={0} className={classNames.container}>
-        <Grid item container className={classNames.head}>
+    <Paper className={classNames.container}>
+      <Grid container spacing={0}>
+        <Grid item container cols={"auto"} className={classNames.head}>
           <Typography variant="h6">{title}</Typography>
           <button onClick={() => setOpenCardConatiner(!openCardContainer)}>
             <IconButton>
@@ -56,7 +59,7 @@ const CardContainer = ({ title }) => {
           <ImageList />
         )}
       </Grid>
-    </Container>
+    </Paper>
   );
 };
 
