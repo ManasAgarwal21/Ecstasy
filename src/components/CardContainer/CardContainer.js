@@ -11,13 +11,13 @@ const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
     margin: "20px",
-    boxShadow:"none",
+    boxShadow: "none",
     backgroundColor: "transparent",
     justifyContent: "space-between",
   },
   list: {
     width: "79vw",
-    padding: "0px 20px", 
+    padding: "0px 20px",
     backgroundColor: "white",
     borderRadius: "4px",
     boxShadow: "0px 1px 8px rgba(0,0,0,0.2)",
@@ -40,14 +40,18 @@ const CardContainer = ({ title, anchor }) => {
   const classNames = useStyles();
   const [openCardContainer, setOpenCardConatiner] = React.useState(false);
   const [hasOffer, setHasOffer] = React.useState(false);
-  
+
   React.useEffect(() => {
-    if(anchor) setHasOffer(true);
+    if (anchor) setHasOffer(true);
   }, [anchor]);
 
   return (
-    <Paper className={(hasOffer) ? classNames.container : classNames.fullWidthContainer}>
-      <Grid container spacing={0} className={(hasOffer) ? classNames.list : ""}>
+    <Paper
+      className={
+        hasOffer ? classNames.container : classNames.fullWidthContainer
+      }
+    >
+      <Grid container spacing={0} className={hasOffer ? classNames.list : ""}>
         <Grid item container cols={"auto"} className={classNames.head}>
           <Typography variant="h6">{title}</Typography>
           <button onClick={() => setOpenCardConatiner(!openCardContainer)}>
@@ -79,10 +83,7 @@ const CardContainer = ({ title, anchor }) => {
           <ImageList />
         )}
       </Grid>
-      {
-        anchor &&
-        (<OfferCard />)
-      }
+      {anchor && <OfferCard />}
     </Paper>
   );
 };

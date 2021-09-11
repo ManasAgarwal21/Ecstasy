@@ -5,13 +5,15 @@ import ImageList from "../components/CardContainer/ImageList";
 
 const HomeContent = () => {
   return (
-    <div style={{
-                backgroundColor: "rgba(230,230,240,0.5",
-                paddingBottom: "10px",
-              }}>
+    <div
+      style={{
+        backgroundColor: "rgba(230,230,240,0.5",
+        paddingBottom: "10px",
+      }}
+    >
       <Banner />
       <CardContainer title="Recommended Products" />
-      <CardContainer title="Trending Products" anchor="offer"/>  
+      <CardContainer title="Trending Products" anchor="offer" />
       <ImageList title="subcategories" />
       <CardContainer title="Discounts for you" />
       <CardContainer title="Shops near you" />
