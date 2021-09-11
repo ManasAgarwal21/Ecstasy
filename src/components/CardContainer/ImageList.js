@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import ImageList from "@material-ui/core/ImageList";
 import ImageListItem from "@material-ui/core/ImageListItem";
-import ProductCard from "../ProductCard";
+import ProductCard from "../Cards/ProductCard";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import "../../styles/App.css";
@@ -31,11 +31,11 @@ export default function SingleLineImageList() {
   return (
     <div className={classes.root}>
       <button
-        className={`z-20 left-0 bg-gray-100 border top-36 px-6 py-6 rounded-full ${
+        className={`z-10 left-0 bg-gray-100 border top-36 px-6 py-6 rounded-full ${
           leftVar === 0 ? "hidden" : "absolute"
         }`}
         onClick={() => {
-          document.getElementById("imageList").scrollLeft -= 160;
+          document.getElementById("imageList").scrollLeft -= 360;
           setLeftVar(document.getElementById("imageList").scrollLeft);
         }}
       >
@@ -64,7 +64,7 @@ export default function SingleLineImageList() {
           maxLeft === leftVar ? "hidden" : "absolute"
         }`}
         onClick={() => {
-          document.getElementById("imageList").scrollLeft += 160;
+          document.getElementById("imageList").scrollLeft += 360;
           setLeftVar(document.getElementById("imageList").scrollLeft);
           setMaxLeft(
             document.getElementById("imageList").scrollWidth -

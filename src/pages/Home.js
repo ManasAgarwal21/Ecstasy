@@ -2,8 +2,8 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Categories from "../components/Categories";
-import CardContainer from "../components/CardContainer/CardContainer";
 import Sidebar from "../components/Sidebar";
+import HomeContent from "../components/HomeContent";
 import Footer from "../components/Footer";
 
 export default function Home({ location }) {
@@ -21,7 +21,7 @@ export default function Home({ location }) {
         setIsSidebarOpen={setIsSidebarOpen}
       />
       <Categories />
-      <CardContainer title="Trending Products" />
+      <HomeContent />
       <Footer />
     </React.Fragment>
   );
