@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ImageListContainer = ({id}) => {
+const ImageListContainer = ({ id }) => {
   const classes = useStyles();
 
   const [products, setProducts] = React.useState([]);
@@ -30,10 +30,10 @@ const ImageListContainer = ({id}) => {
 
   React.useEffect(() => {
     const get = async () => {
-        const product = await fetch("https://fakestoreapi.com/products?limit=14").then(
-          (res) => res.json()
-        );
-        setProducts(product);
+      const product = await fetch(
+        "https://fakestoreapi.com/products?limit=14"
+      ).then((res) => res.json());
+      setProducts(product);
     };
     get();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -47,14 +47,18 @@ const ImageListContainer = ({id}) => {
         }`}
         onClick={() => {
           document.getElementById(id).scrollLeft -= 360;
-          setLeftVar((state) => state-360);
+          setLeftVar((state) => state - 360);
         }}
       >
         <ArrowBackIcon fontSize="small" />
       </button>
-        
-      <ImageList className={classes.imageList + " imageList"} cols={"auto"} id={id}>
-      {products.map((item, index) => (
+
+      <ImageList
+        className={classes.imageList + " imageList"}
+        cols={"auto"}
+        id={id}
+      >
+        {products.map((item, index) => (
           <ImageListItem
             key={index}
             style={{
@@ -72,7 +76,7 @@ const ImageListContainer = ({id}) => {
         }`}
         onClick={() => {
           document.getElementById(id).scrollLeft += 360;
-          setLeftVar((state) => state+360);
+          setLeftVar((state) => state + 360);
           setMaxLeft(
             document.getElementById(id).scrollWidth -
               document.getElementById(id).clientWidth
@@ -83,6 +87,6 @@ const ImageListContainer = ({id}) => {
       </button>
     </div>
   );
-}
+};
 
 export default React.memo(ImageListContainer);
