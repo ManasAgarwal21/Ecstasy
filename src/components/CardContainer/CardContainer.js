@@ -34,7 +34,8 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const CardContainer = ({ title, anchor,selectedList,id }) => {
+const CardContainer = ({ title, anchor,id }) => {
+  const selectedList=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
   const classNames = useStyles();
   const [openCardContainer, setOpenCardConatiner] = React.useState(false);
   const [hasOffer, setHasOffer] = React.useState(false);
@@ -71,6 +72,7 @@ const CardContainer = ({ title, anchor,selectedList,id }) => {
                     props={{
                       name: "product name",
                       price: `${item}`,
+                      rating: {rate: 2.5},
                     }}
                   />
                 </Grid>
@@ -78,7 +80,7 @@ const CardContainer = ({ title, anchor,selectedList,id }) => {
             })}
           </Grid>
         ) : (
-          <ImageList selectedList={selectedList} id={id}/>
+          <ImageList id={id}/>
         )}
       </Grid>
       {anchor && <OfferCard />}

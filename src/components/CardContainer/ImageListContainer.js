@@ -7,7 +7,6 @@ import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import "../../styles/App.css";
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     overflow: "hidden",
@@ -21,11 +20,24 @@ const useStyles = makeStyles((theme) => ({
     scrollBehavior: "smooth",
   },
 }));
-const ImageListContainer = ({selectedList,id}) => {
+
+const ImageListContainer = ({id}) => {
   const classes = useStyles();
 
+  const [products, setProducts] = React.useState([]);
   const [leftVar, setLeftVar] = React.useState(0);
   const [maxLeft, setMaxLeft] = React.useState(undefined);
+
+  React.useEffect(() => {
+    const get = async () => {
+        const product = await fetch("https://fakestoreapi.com/products?limit=14").then(
+          (res) => res.json()
+        );
+        setProducts(product);
+    };
+    get();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className={classes.root}>
@@ -40,8 +52,9 @@ const ImageListContainer = ({selectedList,id}) => {
       >
         <ArrowBackIcon fontSize="small" />
       </button>
+        
       <ImageList className={classes.imageList + " imageList"} cols={"auto"} id={id}>
-        {selectedList && selectedList.map((item, index) => (
+      {products.map((item, index) => (
           <ImageListItem
             key={index}
             style={{
@@ -49,12 +62,7 @@ const ImageListContainer = ({selectedList,id}) => {
               margin: "5px 0px",
             }}
           >
-            <ProductCard
-              props={{
-                name: "Product name",
-                price: `${item}`,
-              }}
-            />
+            <ProductCard props={item} />
           </ImageListItem>
         ))}
       </ImageList>
