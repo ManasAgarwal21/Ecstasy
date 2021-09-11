@@ -7,7 +7,6 @@ import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import "../../styles/App.css";
 
-const selectedList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 11, 1, 1];
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     scrollBehavior: "smooth",
   },
 }));
-export default function SingleLineImageList() {
+const ImageListContainer = ({selectedList,id}) => {
   const classes = useStyles();
 
   const [leftVar, setLeftVar] = React.useState(0);
@@ -35,14 +34,14 @@ export default function SingleLineImageList() {
           leftVar === 0 ? "hidden" : "absolute"
         }`}
         onClick={() => {
-          document.getElementById("imageList").scrollLeft -= 360;
-          setLeftVar(document.getElementById("imageList").scrollLeft);
+          document.getElementById(id).scrollLeft -= 360;
+          setLeftVar(document.getElementById(id).scrollLeft);
         }}
       >
         <ArrowBackIcon fontSize="small" />
       </button>
-      <ImageList className={classes.imageList} cols={"auto"} id="imageList">
-        {selectedList.map((item, index) => (
+      <ImageList className={classes.imageList + " imageList"} cols={"auto"} id={id}>
+        {selectedList && selectedList.map((item, index) => (
           <ImageListItem
             key={index}
             style={{
@@ -64,11 +63,11 @@ export default function SingleLineImageList() {
           maxLeft === leftVar ? "hidden" : "absolute"
         }`}
         onClick={() => {
-          document.getElementById("imageList").scrollLeft += 360;
-          setLeftVar(document.getElementById("imageList").scrollLeft);
+          document.getElementById(id).scrollLeft += 360;
+          setLeftVar(document.getElementById(id).scrollLeft);
           setMaxLeft(
-            document.getElementById("imageList").scrollWidth -
-              document.getElementById("imageList").clientWidth
+            document.getElementById(id).scrollWidth -
+              document.getElementById(id).clientWidth
           );
         }}
       >
@@ -77,3 +76,5 @@ export default function SingleLineImageList() {
     </div>
   );
 }
+
+export default React.memo(ImageListContainer);
