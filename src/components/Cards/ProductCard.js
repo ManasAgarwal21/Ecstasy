@@ -13,6 +13,7 @@ import image from "./../../images/logo192.png";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "160px",
+    height:"270px",
     margin: theme.spacing(1),
     display: "flex",
     justifyContent: "space-around",
@@ -23,9 +24,9 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "1px 1px 8px rgba(0,0,0,0.2)",
   },
   img: {
-    width: "140px",
-    margin: "0px auto",
-    height: "140px",
+    width: "120px",
+    margin: "15px auto 5px auto",
+    height: "120px",
   },
   icons: {
     padding: "4px",
@@ -51,20 +52,26 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.secondary.main,
   },
   title: {
-    fontSize: "18px",
+    fontSize: "13px",
     color: "#000",
+    margin:"4px 0px",
+    overflow: "hidden",
+    display: "-webkit-box",
+    "-webkit-line-clamp": 2,
+    "-webkit-box-orient": "vertical",
   },
   content: {
-    padding: theme.spacing(0, 1, 0),
+    height: "126px",
+    padding: "8px !important",
   },
 }));
 
 const ProductCard = ({ props }) => {
   const classNames = useStyles();
-
   const [product, setProduct] = useState({
     name: "Product name",
-    seller: "Sample seller",
+    seller: "Ecstasy",
+    image: image,
     rating: 2.5,
     onSale: false,
     isFavourite: false,
@@ -73,7 +80,12 @@ const ProductCard = ({ props }) => {
   });
 
   useEffect(() => {
-    if (props) setProduct(props);
+    if (props) setProduct({...product, name : props.title,
+                    image: props.image,
+                    rating: props.rating.rate,
+                    price: props.price,
+                    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props]);
 
   const handleFavClick = (event) => {
@@ -110,18 +122,18 @@ const ProductCard = ({ props }) => {
           <FavoriteIcon className={classNames.icon} />
         </IconButton>
       </CardActions>
-      <img src={image} alt={product.name} className={classNames.img} />
+      <img src={product.image} alt={product.name} className={classNames.img} />
       <CardContent className={classNames.content}>
         <Typography className={classNames.title}>{product.name}</Typography>
         <Rating
           size="small"
           name="half-rating-read"
-          defaultValue={product.rating}
+          value={product.rating}
           precision={0.1}
           readOnly
         />
         <Typography
-          variant="body1"
+          variant="body2"
           style={{ color: "000", fontWeight: "500" }}
           component="p"
         >

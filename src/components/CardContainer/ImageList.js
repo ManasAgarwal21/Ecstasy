@@ -7,8 +7,6 @@ import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import "../../styles/App.css";
 
-const selectedList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 11, 1, 1];
-
 const useStyles = makeStyles((theme) => ({
   root: {
     overflow: "hidden",
@@ -22,11 +20,24 @@ const useStyles = makeStyles((theme) => ({
     scrollBehavior: "smooth",
   },
 }));
+
 export default function SingleLineImageList() {
   const classes = useStyles();
 
+  const [products, setProducts] = React.useState([]);
   const [leftVar, setLeftVar] = React.useState(0);
   const [maxLeft, setMaxLeft] = React.useState();
+
+  React.useEffect(() => {
+    const get = async () => {
+        const product = await fetch("https://fakestoreapi.com/products?limit=14").then(
+          (res) => res.json()
+        );
+        setProducts(product);
+    };
+    get();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className={classes.root}>
@@ -42,7 +53,7 @@ export default function SingleLineImageList() {
         <ArrowBackIcon fontSize="small" />
       </button>
       <ImageList className={classes.imageList} cols={"auto"} id="imageList">
-        {selectedList.map((item, index) => (
+        {products.map((item, index) => (
           <ImageListItem
             key={index}
             style={{
@@ -50,12 +61,7 @@ export default function SingleLineImageList() {
               margin: "5px 0px",
             }}
           >
-            <ProductCard
-              props={{
-                name: "Product name",
-                price: `${item}`,
-              }}
-            />
+            <ProductCard props={item} />
           </ImageListItem>
         ))}
       </ImageList>
