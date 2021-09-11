@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   fullWidthContainer: {
     margin: "20px",
     padding: "0px 10px",
-    // boxShadow: "0px 1px 8px rgba(0,0,0,0.2)",
+    boxShadow: "0px 1px 8px rgba(0,0,0,0.2)",
   },
   head: {
     alignItems: "center",
