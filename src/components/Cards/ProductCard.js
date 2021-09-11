@@ -13,7 +13,7 @@ import image from "./../../images/logo192.png";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "160px",
-    height:"270px",
+    height: "270px",
     margin: theme.spacing(1),
     display: "flex",
     justifyContent: "space-around",
@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     fontSize: "13px",
     color: "#000",
-    margin:"4px 0px",
+    margin: "4px 0px",
     overflow: "hidden",
     display: "-webkit-box",
     "-webkit-line-clamp": 2,
@@ -80,12 +80,15 @@ const ProductCard = ({ props }) => {
   });
 
   useEffect(() => {
-    if (props) setProduct({...product, name : props.title,
-                    image: props.image || image,
-                    rating: props.rating.rate,
-                    price: props.price,
-                    });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (props)
+      setProduct({
+        ...product,
+        name: props.title,
+        image: props.image || image,
+        rating: props.rating.rate,
+        price: props.price,
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props]);
 
   const handleFavClick = (event) => {
