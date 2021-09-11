@@ -37,6 +37,7 @@
   }
 }
 
-#imageList::-webkit-scrollbar {
+.imageList::-webkit-scrollbar {
   display: none;
 }
+

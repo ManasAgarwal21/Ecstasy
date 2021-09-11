@@ -3,11 +3,11 @@ import { Paper, Typography, Grid, IconButton } from "@material-ui/core";
 import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import ProductCard from "../Cards/ProductCard";
-import ImageList from "./ImageList";
+import ImageList from "./ImageListContainer";
 import { makeStyles } from "@material-ui/core/styles";
 import OfferCard from "./../Cards/OfferCard";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   container: {
     display: "flex",
     margin: "20px",
@@ -34,9 +34,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const selectedList = [1, 2, 3, 4, 5, 6, 7];
-
-const CardContainer = ({ title, anchor }) => {
+const CardContainer = ({ title, anchor,id }) => {
+  const selectedList=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
   const classNames = useStyles();
   const [openCardContainer, setOpenCardConatiner] = React.useState(false);
   const [hasOffer, setHasOffer] = React.useState(false);
@@ -73,6 +72,7 @@ const CardContainer = ({ title, anchor }) => {
                     props={{
                       name: "product name",
                       price: `${item}`,
+                      rating: {rate: 2.5},
                     }}
                   />
                 </Grid>
@@ -80,7 +80,7 @@ const CardContainer = ({ title, anchor }) => {
             })}
           </Grid>
         ) : (
-          <ImageList />
+          <ImageList id={id}/>
         )}
       </Grid>
       {anchor && <OfferCard />}

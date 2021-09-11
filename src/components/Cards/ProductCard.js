@@ -81,7 +81,7 @@ const ProductCard = ({ props }) => {
 
   useEffect(() => {
     if (props) setProduct({...product, name : props.title,
-                    image: props.image,
+                    image: props.image || image,
                     rating: props.rating.rate,
                     price: props.price,
                     });

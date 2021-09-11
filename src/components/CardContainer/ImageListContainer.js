@@ -21,12 +21,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SingleLineImageList() {
+const ImageListContainer = ({id}) => {
   const classes = useStyles();
 
   const [products, setProducts] = React.useState([]);
   const [leftVar, setLeftVar] = React.useState(0);
-  const [maxLeft, setMaxLeft] = React.useState();
+  const [maxLeft, setMaxLeft] = React.useState(undefined);
 
   React.useEffect(() => {
     const get = async () => {
@@ -43,17 +43,18 @@ export default function SingleLineImageList() {
     <div className={classes.root}>
       <button
         className={`z-10 left-0 bg-gray-100 border top-36 px-6 py-6 rounded-full ${
-          leftVar === 0 ? "hidden" : "absolute"
+          leftVar <= 0 ? "hidden" : "absolute"
         }`}
         onClick={() => {
-          document.getElementById("imageList").scrollLeft -= 360;
-          setLeftVar(document.getElementById("imageList").scrollLeft);
+          document.getElementById(id).scrollLeft -= 360;
+          setLeftVar((state) => state-360);
         }}
       >
         <ArrowBackIcon fontSize="small" />
       </button>
-      <ImageList className={classes.imageList} cols={"auto"} id="imageList">
-        {products.map((item, index) => (
+        
+      <ImageList className={classes.imageList + " imageList"} cols={"auto"} id={id}>
+      {products.map((item, index) => (
           <ImageListItem
             key={index}
             style={{
@@ -67,14 +68,14 @@ export default function SingleLineImageList() {
       </ImageList>
       <button
         className={`z-10 right-0 bg-gray-100 border top-36 px-6 py-6 rounded-full ${
-          maxLeft === leftVar ? "hidden" : "absolute"
+          leftVar >= maxLeft ? "hidden" : "absolute"
         }`}
         onClick={() => {
-          document.getElementById("imageList").scrollLeft += 360;
-          setLeftVar(document.getElementById("imageList").scrollLeft);
+          document.getElementById(id).scrollLeft += 360;
+          setLeftVar((state) => state+360);
           setMaxLeft(
-            document.getElementById("imageList").scrollWidth -
-              document.getElementById("imageList").clientWidth
+            document.getElementById(id).scrollWidth -
+              document.getElementById(id).clientWidth
           );
         }}
       >
@@ -83,3 +84,5 @@ export default function SingleLineImageList() {
     </div>
   );
 }
+
+export default React.memo(ImageListContainer);
