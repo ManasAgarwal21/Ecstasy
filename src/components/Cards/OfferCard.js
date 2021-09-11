@@ -7,6 +7,7 @@ const useStyles = makeStyles((theme) => ({
     width: "16vw",
     height: "345px",
     boxShadow: "0px 1px 8px rgba(0,0,0,0.2)",
+    cursor: "pointer",
     [theme.breakpoints.down("xs")]: {
       display: "none",
     },
@@ -14,15 +15,19 @@ const useStyles = makeStyles((theme) => ({
   image: {
     width: "100%",
     height: "100%",
+    borderRadius: "4px",
   },
 }));
 
-const OfferCard = () => {
+const OfferCard = ({ image }) => {
   const classNames = useStyles();
   return (
     <Paper className={classNames.root}>
       <img
-        src="https://cdn.grabon.in/gograbon/images/web-images/uploads/1618571140235/mobile-offers.jpg"
+        src={
+          image ||
+          "https://cdn.grabon.in/gograbon/images/web-images/uploads/1618571140235/mobile-offers.jpg"
+        }
         className={classNames.image}
         alt="offer"
       />

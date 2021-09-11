@@ -2,6 +2,7 @@ import React from "react";
 import Banner from "../components/Banner";
 import CardContainer from "../components/CardContainer/CardContainer";
 import ImageList from "./CardContainer/ImageListContainer";
+import OffersContainer from "./CardContainer/OffersContainer";
 
 const HomeContent = () => {
   return (
@@ -21,10 +22,7 @@ const HomeContent = () => {
         anchor="offer"
         id={"Trending Products"}
       />
-      <ImageList
-        title="subcategories"
-        id={"subcategories"}
-      />
+      <OffersContainer type="categories"/>
       <CardContainer
         title="Discounts for you"
         id={"Discounts for you"}
@@ -33,10 +31,7 @@ const HomeContent = () => {
         title="Shops near you"
         id="Shops near you"
       />
-      <ImageList
-        title="offers"
-        id="offers"
-      />
+      <OffersContainer type="offers"/>
       <CardContainer
         title="Recently Viewed"
         id="Recently Viewed"
