@@ -5,16 +5,19 @@ import ImageList from "../components/CardContainer/ImageList";
 
 const HomeContent = () => {
   return (
-    <React.Fragment>
+    <div style={{
+                backgroundColor: "rgba(230,230,240,0.5",
+                paddingBottom: "10px",
+              }}>
       <Banner />
       <CardContainer title="Recommended Products" />
-      <CardContainer title="Trending Products" />
+      <CardContainer title="Trending Products" anchor="offer"/>  
       <ImageList title="subcategories" />
       <CardContainer title="Discounts for you" />
       <CardContainer title="Shops near you" />
       <ImageList title="offers" />
       <CardContainer title="Recently Viewed" />
-    </React.Fragment>
+    </div>
   );
 };
 

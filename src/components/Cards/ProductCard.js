@@ -8,7 +8,7 @@ import Rating from "@material-ui/lab/Rating";
 import Typography from "@material-ui/core/Typography";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import { makeStyles } from "@material-ui/core/styles";
-import image from "./../images/logo192.png";
+import image from "./../../images/logo192.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
