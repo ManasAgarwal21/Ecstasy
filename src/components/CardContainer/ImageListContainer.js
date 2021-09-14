@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ImageListContainer = ({ id }) => {
+const ImageListContainer = ({ id , start, end}) => {
   const classes = useStyles();
   const { productReducer } = useSelector(getProducts);
   const [products, setProducts] = React.useState([]);
@@ -31,12 +31,9 @@ const ImageListContainer = ({ id }) => {
   const [maxLeft, setMaxLeft] = React.useState(undefined);
 
   React.useEffect(() => {
-    let end = Math.floor(Math.random() * 8 + 12);
-    let start = Math.floor(Math.random() * 6);
-    // console.log(end);
-    const products = productReducer.slice(start, end);
+    const products = productReducer.slice(start-1, end);
     setProducts(products);
-  }, [productReducer]);
+  }, [productReducer, end, start]);
 
   return (
     <div className={classes.root}>

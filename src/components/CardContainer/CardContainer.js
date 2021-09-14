@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CardContainer = ({ title, anchor, id }) => {
+const CardContainer = ({ title, anchor, id, start, end }) => {
   const selectedList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
   const classNames = useStyles();
   const [openCardContainer, setOpenCardConatiner] = React.useState(false);
@@ -83,7 +83,7 @@ const CardContainer = ({ title, anchor, id }) => {
             })}
           </Grid>
         ) : (
-          <ImageList id={id} />
+          <ImageList id={id} start={start} end={end} />
         )}
       </Grid>
       {anchor && <OfferCard parent="container" />}
