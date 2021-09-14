@@ -23,17 +23,31 @@ const HomeContent = () => {
       }}
     >
       <Banner />
-      <CardContainer title="Recommended Products" id={"Recommended Products"} />
+      <CardContainer title="Recommended Products" 
+        id={"Recommended Products"}
+        start={1}
+        end={12} />
       <CardContainer
         title="Trending Products"
         anchor="offer"
-        id={"Trending Products"}
+        id="Trending Products"
+        start={14}
+        end={20}
       />
       <OffersContainer type="categories" />
-      <CardContainer title="Discounts for you" id={"Discounts for you"} />
-      <CardContainer title="Shops near you" id="Shops near you" />
+      <CardContainer title="Discounts for you" 
+        id={"Discounts for you"}
+        start={9}
+        end={17} />
+      <CardContainer title="Shops near you" 
+        id="Shops near you"
+        start={1}
+        end={10} />
       <OffersContainer type="offers" />
-      <CardContainer title="Recently Viewed" id="Recently Viewed" />
+      <CardContainer title="Recently Viewed" 
+      id="Recently Viewed"
+      start={10}
+      end={17} />
     </div>
   );
 };
