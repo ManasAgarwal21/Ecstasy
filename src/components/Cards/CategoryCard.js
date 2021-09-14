@@ -31,7 +31,7 @@ export default function RecipeReviewCard() {
 
   return (
     <Card
-      className="transform transition duration-1000 ease-in-out hover:-translate-x-1 hover:shadow-lg hover:-translate-y-1 border max-h-72"
+      className="mx-2 transform transition duration-1000 ease-in-out hover:-translate-x-1 hover:shadow-lg hover:-translate-y-1 border max-h-72"
       style={{ maxWidth: 250 }}
     >
       <CardMedia

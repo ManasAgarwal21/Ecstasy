@@ -4,3 +4,10 @@ export const updateUser = (user) => {
     payload: user,
   };
 };
+
+export const updateProduct = (product) => {
+  return {
+    type: "UPDATE_PRODUCT",
+    payload: product,
+  };
+};

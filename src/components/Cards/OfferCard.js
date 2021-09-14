@@ -5,7 +5,18 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "16vw",
+    minWidth: "180px",
+    maxWidth: "220px",
+    margin: "0px 8px",
     height: "345px",
+    boxShadow: "0px 1px 8px rgba(0,0,0,0.2)",
+    cursor: "pointer",
+  },
+  rootWithCards: {
+    width: "16vw",
+    minWidth: "180px",
+    height: "345px",
+    marginLeft: "20px",
     boxShadow: "0px 1px 8px rgba(0,0,0,0.2)",
     cursor: "pointer",
     [theme.breakpoints.down("xs")]: {
@@ -19,10 +30,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const OfferCard = ({ image }) => {
+const OfferCard = ({ parent, image }) => {
   const classNames = useStyles();
   return (
-    <Paper className={classNames.root}>
+    <Paper className={parent ? classNames.rootWithCards : classNames.root}>
       <img
         src={
           image ||

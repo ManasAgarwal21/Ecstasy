@@ -1,5 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { useSelector } from "react-redux";
+import { getProducts } from "../../redux/selectors/user.selectors";
 import ImageList from "@material-ui/core/ImageList";
 import ImageListItem from "@material-ui/core/ImageListItem";
 import ProductCard from "../Cards/ProductCard";
@@ -23,21 +25,18 @@ const useStyles = makeStyles((theme) => ({
 
 const ImageListContainer = ({ id }) => {
   const classes = useStyles();
-
+  const { productReducer } = useSelector(getProducts);
   const [products, setProducts] = React.useState([]);
   const [leftVar, setLeftVar] = React.useState(0);
   const [maxLeft, setMaxLeft] = React.useState(undefined);
 
   React.useEffect(() => {
-    const get = async () => {
-      const product = await fetch(
-        "https://fakestoreapi.com/products?limit=14"
-      ).then((res) => res.json());
-      setProducts(product);
-    };
-    get();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    let end = Math.floor(Math.random() * 8 + 12);
+    let start = Math.floor(Math.random() * 6);
+    // console.log(end);
+    const products = productReducer.slice(start, end);
+    setProducts(products);
+  }, [productReducer]);
 
   return (
     <div className={classes.root}>
