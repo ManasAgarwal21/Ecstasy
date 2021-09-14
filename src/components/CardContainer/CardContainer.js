@@ -7,20 +7,23 @@ import ImageList from "./ImageListContainer";
 import { makeStyles } from "@material-ui/core/styles";
 import OfferCard from "./../Cards/OfferCard";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
-    margin: "20px",
     boxShadow: "none",
+    margin: "20px",
     backgroundColor: "transparent",
     justifyContent: "space-between",
   },
   list: {
-    width: "79vw",
+    maxWidth: "calc(100% - 200px)",
     padding: "0px 20px",
     backgroundColor: "white",
     borderRadius: "4px",
     boxShadow: "0px 1px 8px rgba(0,0,0,0.2)",
+    [theme.breakpoints.down("xs")]: {
+      maxWidth: "100%",
+    },
   },
   fullWidthContainer: {
     margin: "20px",
@@ -83,7 +86,7 @@ const CardContainer = ({ title, anchor, id }) => {
           <ImageList id={id} />
         )}
       </Grid>
-      {anchor && <OfferCard />}
+      {anchor && <OfferCard parent="container" />}
     </Paper>
   );
 };
