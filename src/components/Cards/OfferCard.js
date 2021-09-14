@@ -6,6 +6,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: "16vw",
     minWidth: "180px",
+    maxWidth: "220px",
     margin: "0px 8px",
     height: "345px",
     boxShadow: "0px 1px 8px rgba(0,0,0,0.2)",

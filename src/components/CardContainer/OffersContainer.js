@@ -34,13 +34,16 @@ const OffersContainer = ({ type }) => {
     "https://cdn1.vectorstock.com/i/1000x1000/93/10/sale-voucher-discount-and-offers-banner-design-vector-14299310.jpg",
     "https://images.freekaamaal.com/post_images/1610602042.jpg",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmA58KS09sDt2NdrzGiOMTkDhVifFCDr1V_w&usqp=CAU",
+    "https://cdn.grabon.in/gograbon/images/web-images/uploads/1618571140235/mobile-offers.jpg",
   ];
+
+  const categories = [1,2,3,4,5,6,7];
 
   return (
     <div className={classes.root}>
     <ImageList className={classes.list} cols={"auto"}>
       {type === "categories"
-        ? offers.map((item, index) => (
+        ? categories.map((item, index) => (
             <ImageListItem
               key={index}
               style={{
@@ -48,7 +51,7 @@ const OffersContainer = ({ type }) => {
                 margin: "5px 0px",
               }}
             >
-              <CategoryCard image={item} />
+              <CategoryCard />
             </ImageListItem>
           ))
         : offers.map((item, index) => (

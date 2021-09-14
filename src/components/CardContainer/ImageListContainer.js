@@ -31,7 +31,11 @@ const ImageListContainer = ({ id }) => {
   const [maxLeft, setMaxLeft] = React.useState(undefined);
 
   React.useEffect(() => {
-    setProducts(productReducer);
+    let end = Math.floor(Math.random() * 8 + 12);
+    let start = Math.floor(Math.random() * 6);
+    // console.log(end);
+    const products = productReducer.slice(start, end);
+    setProducts(products);
   }, [productReducer]);
 
   return (
