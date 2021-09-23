@@ -1,62 +1,91 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Card from "@material-ui/core/Card";
-import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import image from "./../../assets/default.jpg";
 
-const useStyles = makeStyles(() => ({
-  text: {
-    fontSize: "20px",
-    fontWeight: 1000,
-    color: "#000",
-    marginTop: "-50px",
-  },
-  price: {
-    fontSize: "14px",
-    color: "#000",
-    marginTop: "20px",
-  },
-  cardContent: {
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: "160px",
+    height: "270px",
+    margin: theme.spacing(1),
     display: "flex",
-    position: "relative",
-    textAlign: "center",
+    justifyContent: "space-around",
     flexDirection: "column",
-    paddingTop: 4,
+    position: "relative",
+    padding: "4px",
+    paddingBottom: "0px",
+    boxShadow: "1px 1px 8px rgba(0,0,0,0.2)",
+  },
+  img: {
+    width: "140px",
+    margin: "15px auto 5px auto",
+    height: "140px",
+  },
+  title: {
+    fontSize: "13px",
+    color: "#000",
+    margin: "4px 0px",
+    overflow: "hidden",
+    display: "-webkit-box",
+    "-webkit-line-clamp": 2,
+    "-webkit-box-orient": "vertical",
+  },
+  content: {
+    height: "135px",
+    alignItems: "center",
+    padding: "8px !important",
+    display: "flex",
+    flexDirection: "column",
+    "& > *":{
+      margin: "3px 0px",
+      textAlign: "center",
+    }
   },
 }));
 
-export default function RecipeReviewCard() {
+const ProductCard = ({ props }) => {
   const classNames = useStyles();
+  const [product, setProduct] = useState({
+    category: "Category",
+    image: image,
+    onSale: false,
+    price: 0.0,
+    desc: "product1, product2",
+    filter: ["all"],
+  });
+
+  useEffect(() => {
+    if (props)
+      setProduct({
+        ...product,
+        category: props.category,
+        image: props.image || image,
+        price: props.price,
+        desc: props.desc,
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props]);
 
   return (
-    <Card
-      className="mx-2 transform transition duration-1000 ease-in-out hover:-translate-x-1 hover:shadow-lg hover:-translate-y-1 border max-h-72"
-      style={{ maxWidth: 250 }}
-    >
-      <CardMedia
-        className="h-60 opacity-90 hover:opacity-95"
-        image="https://www.reliancedigital.in/medias/iPhone-11-64GB-Black-491901638-i-1-1200Wx1200H?context=bWFzdGVyfGltYWdlc3wxMTEzOTR8aW1hZ2UvanBlZ3xpbWFnZXMvaDExL2gzOC85NDIxODk4OTQwNDQ2LmpwZ3w1YzllY2ZiZDg2NTZjNzgyMzM5NmE5NTkxMjk2Y2E1YWNkNTM5NWU4NGQxM2NiZTczNGI4ZGNkNzNmMTc0ODM4"
-        title="Category"
-      />
-      <CardContent className={classNames.cardContent}>
+    <Card className={classNames.root}>
+      <img src={product.image} alt={product.category} className={classNames.img} />
+      <CardContent className={classNames.content}>
+        <Typography className={classNames.title}>{product.category}</Typography>
         <Typography
           variant="body2"
-          color="textSecondary"
+          style={{ color: "000", fontWeight: "500" }}
           component="p"
-          className={classNames.text}
         >
-          MOBILE
+          {`from ₹ ${product.price}`}
         </Typography>
-        <Typography
-          variant="body2"
-          color="textSecondary"
-          component="p"
-          className={classNames.price}
-        >
-          ₹20,900.00 - ₹94,900.00
+        <Typography variant="body2" color="textSecondary" component="p">
+          {`${product.desc}`}
         </Typography>
       </CardContent>
     </Card>
   );
-}
+};
+
+export default ProductCard;

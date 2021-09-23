@@ -22,12 +22,12 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
   },
   list: {
-    maxWidth: "calc(100% - 18vw)",
+    maxWidth: "calc(100% - 20vw)",
     padding: "0px 20px",
     backgroundColor: "white",
     borderRadius: "4px",
     boxShadow: "0px 1px 8px rgba(0,0,0,0.2)",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       maxWidth: "100%",
     },
   },

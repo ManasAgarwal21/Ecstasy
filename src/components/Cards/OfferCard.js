@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "20px",
     boxShadow: "0px 1px 8px rgba(0,0,0,0.2)",
     cursor: "pointer",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       display: "none",
     },
   },
