@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
   },
   list: {
-    maxWidth: "calc(100% - 20vw)",
+    maxWidth: "calc(100% - 19vw)",
     padding: "0px 20px",
     backgroundColor: "white",
     borderRadius: "4px",
