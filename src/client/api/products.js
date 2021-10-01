@@ -1,8 +1,7 @@
 const getProducts = async () => {
-  const products = await fetch("http://fakestoreapi.com/products").then((res) =>
+  const products = await fetch("/api/products").then((res) =>
     res.json()
   );
-  console.log(products);
   return products;
 };
 
