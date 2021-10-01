@@ -80,14 +80,17 @@ const ProductCard = ({ props }) => {
   });
 
   useEffect(() => {
-    if (props)
+    if (props){
       setProduct({
         ...product,
-        name: props.title,
+        name: props.name,
         image: props.image || image,
-        rating: props.rating.rate,
+        rating: props.rating,
         price: props.price,
+        isFavourite: props.isFavourite,
+        onSale: props.onSale,
       });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props]);
 
