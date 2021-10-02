@@ -19,6 +19,7 @@ import { LockOutlined, Visibility, VisibilityOff } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import { useDispatch } from "react-redux";
 import { updateUser } from "../redux/actions/user.actions";
+import { create } from "../api/api-user";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -110,7 +111,20 @@ export default function Signup(props) {
       });
       return;
     } else {
-      setExtras({ ...extras, open: true });
+      const user_data = {
+        name: user.firstName + " " + user.lastName,
+        email: user.email,
+        password: user.password,
+        role: user.role,
+      }
+      create(user_data).then((data) => {
+        if(data.error){
+          setExtras({...extras, error: data.error, message: ""});
+        }
+        else{
+          setExtras({ ...extras, open: true });
+        }
+      })
     }
   };
 
