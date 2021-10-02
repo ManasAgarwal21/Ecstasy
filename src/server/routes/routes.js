@@ -1,8 +1,11 @@
 import express from "express";
-import controller from "../controller/product.controller";
+import { getProducts } from "../controller/product.controller";
+import { getUsers, createUser } from "../controller/user.controller";
 
 const routes = express();
 
-routes.route("/api/products").get(controller.getProducts);
-routes.route("/api/users").get(controller.getUsers);
+routes.route("/api/products").get(getProducts);
+routes.route("/api/users").get(getUsers);
+routes.route("/api/users").post(createUser);
+
 export default routes;
