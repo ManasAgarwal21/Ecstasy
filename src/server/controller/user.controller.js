@@ -13,7 +13,6 @@ const getUsers = async (req, res) => {
 
 const createUser = async (req, res) => {
   const user = new userModel(req.body);
-  console.log(req.body);
   try {
     await user.save();
     return res.status(200).json({

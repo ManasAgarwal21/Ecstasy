@@ -55,6 +55,7 @@ export const UserSchema = new Schema({
       dateDelivered: Date,
     },
   ],
+  salt: String,
 });
 
 UserSchema.virtual("password").set(function(input){
@@ -64,8 +65,6 @@ UserSchema.virtual("password").set(function(input){
 }).get(function(){
   return this._password;
 });
-
-UserSchema.virtual('salt');
 
 UserSchema.methods = {
   makeSalt: function(){
@@ -79,6 +78,9 @@ UserSchema.methods = {
     catch(err){
       return "";
     }
+  },
+  authenticate: function(password){
+    return this.encryptPassword(password) === this.hashed_password;
   }
 }
 

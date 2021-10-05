@@ -5,7 +5,7 @@ import config from "./config/config.js";
 
 const app = express();
 
-mongoose.connect(config.MONGODB_URI);
+mongoose.connect(config.mongodb_uri);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -20,6 +20,6 @@ mongoose.connection.on("error", () => {
   console.log("error");
 });
 
-app.listen(config.PORT, () => {
+app.listen(config.port, () => {
   console.log("success");
 });
