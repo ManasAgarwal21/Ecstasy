@@ -29,7 +29,7 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "concurrently \"nodemon ./src/server/server.js --exec babel-node -e js\"",
+    "start": "concurrently \"nodemon ./src/server/server.js --exec babel-node -e js\" \"craco start\"",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject"
