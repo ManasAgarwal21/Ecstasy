@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import crypto from "crypto";
 
 const Schema = mongoose.Schema;
 
@@ -7,10 +8,19 @@ export const UserSchema = new Schema({
     type: String,
     required: "email is required",
   },
-  name: String,
-  password: String,
+  name: {
+    type: String,
+    required: "name is required",
+  },
+  hashed_password: {
+    type: String,
+    required: "password is required",
+  },
   image: String,
-  role: String,
+  role: {
+    type: String,
+    required: "role is required",
+  },
   isLoggedIn: Boolean,
   addresses: [
     {
@@ -45,6 +55,33 @@ export const UserSchema = new Schema({
       dateDelivered: Date,
     },
   ],
+  salt: String,
 });
 
-export default mongoose.model("users", UserSchema);
+UserSchema.virtual("password").set(function(input){
+  this._password = input;
+  this.salt = this.makeSalt();
+  this.hashed_password = this.encryptPassword(input);
+}).get(function(){
+  return this._password;
+});
+
+UserSchema.methods = {
+  makeSalt: function(){
+    return Math.round(new Date().valueOf() * Math.random()) + '';
+  },
+  encryptPassword: function(password){
+    if(!password) return "";
+    try{
+      return crypto.createHmac('sha1', this.salt).update(password).digest("hex");
+    }
+    catch(err){
+      return "";
+    }
+  },
+  authenticate: function(password){
+    return this.encryptPassword(password) === this.hashed_password;
+  }
+}
+
+export default mongoose.model("Users", UserSchema);

@@ -102,7 +102,7 @@ export default function Signup(props) {
   };
 
   const clickSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault(); 
     if (!handlePasswordMatch()) {
       setExtras({
         ...extras,

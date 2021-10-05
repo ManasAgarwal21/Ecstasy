@@ -21,6 +21,7 @@ import { LockOutlined, Visibility, VisibilityOff } from "@material-ui/icons";
 import { useSelector, useDispatch } from "react-redux";
 import { getData } from "../redux/selectors/user.selectors";
 import { updateUser } from "../redux/actions/user.actions";
+import {signin} from "../api/api-auth";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -92,7 +93,14 @@ export default function Login({ location }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setExtras({ ...extras, redirectToReferrer: true });
+
+    signin(user).then((response) => {
+      if(response.error){
+        setExtras({...extras, error: response.error});
+      }else{
+        setExtras({...extras, redirectToReferrer: true});
+      }
+    })
   };
 
   const { redirectToReferrer } = extras;
