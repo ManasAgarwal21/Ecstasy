@@ -20,6 +20,6 @@ mongoose.connection.on("error", () => {
   console.log("error");
 });
 
-app.listen(1000, () => {
+app.listen(config.PORT, () => {
   console.log("success");
 });
