@@ -1,3 +1,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+    padding: 0px;
+    margin: 0px;
+}
+.noscript{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #212529;
+}
+.alert-box{
+    width:50vh;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.9);
+    max-width: 400px;
+    max-height: 300px;
+    padding: 10%;
+    box-sizing: border-box;
+    height:40vh;
+}
+
+.alert-box > *{
+    margin-bottom: 20px;
+    text-align: justify;
+}
+a{
+    color: royalblue;
+}
+p{
+    font-size: 14px;
+}
+.alert-box > h3{
+    text-align: center;
+    color: red;
+}
