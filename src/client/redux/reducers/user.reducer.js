@@ -1,10 +1,13 @@
 import extend from "lodash/extend";
+import { decrypt } from "../../../server/config/encrypt";
+
+const values = decrypt(localStorage.getItem("ECSID"));
 
 export const initialState = {
   firstName: "",
   lastName: "",
-  email: "",
-  password: "",
+  email: (values) ? values.email : "",
+  password: (values) ? values.password : "",
   role: "",
 };
 
