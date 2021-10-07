@@ -22,6 +22,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getData } from "../redux/selectors/user.selectors";
 import { updateUser } from "../redux/actions/user.actions";
 import {signin} from "../api/api-auth";
+import {encrypt} from "../../server/config/encrypt";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -62,7 +63,7 @@ export default function Login({ location }) {
   const classNames = useStyles();
   const { userReducer } = useSelector(getData);
   const dispatch = useDispatch();
-
+  
   const [user, setUser] = useState({
     password: userReducer.password,
     email: userReducer.email,
@@ -72,6 +73,7 @@ export default function Login({ location }) {
     showPassword: false,
     error: "",
     message: "",
+    remember: false,
     redirectToReferrer: false,
   });
 
@@ -82,6 +84,13 @@ export default function Login({ location }) {
   const handleChange = (prop) => (event) => {
     setUser({ ...user, [prop]: event.target.value });
   };
+
+  const handleChecked = (event) => {
+    if(event.target.checked)
+      setExtras({...extras, remember: true})
+    else
+      setExtras({...extras, remember: false});
+  }
 
   const handleClickShowPassword = () => {
     setExtras({ ...extras, showPassword: !extras.showPassword });
@@ -98,6 +107,7 @@ export default function Login({ location }) {
       if(response.error){
         setExtras({...extras, error: response.error});
       }else{
+        localStorage.setItem("ECSID", encrypt(user.email, user.password));
         setExtras({...extras, redirectToReferrer: true});
       }
     })
@@ -170,7 +180,7 @@ export default function Login({ location }) {
             </Typography>
           )}
           <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
+            control={<Checkbox value="remember" onChange={handleChecked} color="primary" />}
             label="Remember me"
           />
           <Button
