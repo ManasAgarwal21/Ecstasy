@@ -8,7 +8,7 @@ import ImageList from "@material-ui/core/ImageList";
 import ImageListItem from "@material-ui/core/ImageListItem";
 import ProductCard from "../Cards/ProductCard";
 import { makeStyles } from "@material-ui/core/styles";
-import OfferCard from "./../Cards/OfferCard";
+import OfferCard from "../Cards/OfferCard";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import "../../styles/App.css";

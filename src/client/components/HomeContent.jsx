@@ -1,8 +1,8 @@
 import React from "react";
 import getProducts from "../api/products";
 import { updateProduct } from "../redux/actions/user.actions";
-import Banner from "../components/Banner";
-import CardContainer from "../components/CardContainer/CardContainer";
+import Banner from "./Banner";
+import CardContainer from "./CardContainer/CardContainer";
 import OffersContainer from "./CardContainer/OffersContainer";
 import { useDispatch } from "react-redux";
 
