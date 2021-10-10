@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import { Paper, IconButton, InputBase, Divider } from "@material-ui/core";
+import { Paper, IconButton, InputBase, Divider } from "@mui/material";
 import {
   FilterListRounded,
   Search,
   PinDropRounded,
   PinDropOutlined,
-} from "@material-ui/icons";
-import { makeStyles } from "@material-ui/core/styles";
+} from "@mui/icons-material";
+import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: "0px 4px",
-    margin: "4px 10px",
+    margin: "6px 10px !important",
     borderRadius: "5px",
     display: "flex",
     alignItems: "center",
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   colouredIconButton: {
-    color: theme.palette.primary.main,
+    color: `${theme.palette.primary.main} !important`,
     padding: 6,
   },
   icon: {

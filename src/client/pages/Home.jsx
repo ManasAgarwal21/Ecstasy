@@ -13,9 +13,9 @@ export default function Home({ location }) {
   const match = search.match(/search=(.*)/);
   const type = match?.[1];
 
-  if (!location.state) {
-    return <Redirect to="/login" />;
-  }
+  // if (!location.state) {
+  //   return <Redirect to="/login" />;
+  // }
 
   return (
     <React.Fragment>

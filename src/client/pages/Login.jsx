@@ -14,10 +14,10 @@ import {
   IconButton,
   OutlinedInput,
   InputLabel,
-} from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+} from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import { Link, Redirect } from "react-router-dom";
-import { LockOutlined, Visibility, VisibilityOff } from "@material-ui/icons";
+import { LockOutlined, Visibility, VisibilityOff } from "@mui/icons-material";
 import { useSelector, useDispatch } from "react-redux";
 import { getData } from "../redux/selectors/user.selectors";
 import { updateUser } from "../redux/actions/user.actions";
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.primary.light,
+    backgroundColor: `${theme.palette.primary.light} !important`,
   },
   links: {
     display: "flex",
@@ -51,11 +51,11 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    width: "100%",
+    marginTop: `${theme.spacing(1)} !important`,
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    margin: `${theme.spacing(3,0,2)} !important`
   },
 }));
 
@@ -131,7 +131,7 @@ export default function Login({ location }) {
       <div className={classNames.paper}>
         {/* for lock icon in the page */}
         <Avatar className={classNames.avatar}>
-          <LockOutlined />
+          <LockOutlined/>
         </Avatar>
         <Typography component="h1" variant="h5">
           Sign in
@@ -169,7 +169,7 @@ export default function Login({ location }) {
                   </IconButton>
                 </InputAdornment>
               }
-              labelWidth={80}
+              label="password *"
             />
           </FormControl>
           <br />

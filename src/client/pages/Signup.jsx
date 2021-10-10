@@ -12,11 +12,11 @@ import {
   Icon,
   InputLabel,
   Box,
-} from "@material-ui/core";
+} from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { Link, Redirect } from "react-router-dom";
-import { LockOutlined, Visibility, VisibilityOff } from "@material-ui/icons";
-import { makeStyles } from "@material-ui/core/styles";
+import { LockOutlined, Visibility, VisibilityOff } from "@mui/icons-material";
+import { makeStyles } from "@mui/styles";
 import { useDispatch } from "react-redux";
 import { updateUser } from "../redux/actions/user.actions";
 import { create } from "../api/api-user";
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.primary.light,
+    backgroundColor: `${theme.palette.primary.light} !important`,
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -228,7 +228,7 @@ export default function Signup(props) {
                       </IconButton>
                     </InputAdornment>
                   }
-                  labelWidth={80}
+                  label="password *"
                 />
               </FormControl>
             </Grid>
@@ -258,7 +258,7 @@ export default function Signup(props) {
                       </IconButton>
                     </InputAdornment>
                   }
-                  labelWidth={145}
+                  label="Confirm Password *"
                 />
               </FormControl>
             </Grid>
