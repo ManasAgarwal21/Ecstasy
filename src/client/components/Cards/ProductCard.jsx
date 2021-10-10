@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
-import Chip from "@material-ui/core/Chip";
-import IconButton from "@material-ui/core/IconButton";
-import Rating from "@material-ui/lab/Rating";
-import Typography from "@material-ui/core/Typography";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import { makeStyles } from "@material-ui/core/styles";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
+import IconButton from "@mui/material/IconButton";
+import Rating from "@mui/material/Rating";
+import Typography from "@mui/material/Typography";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { makeStyles } from "@mui/styles";
 import image from "./../../assets/default.jpg";
 
 const useStyles = makeStyles((theme) => ({
@@ -39,20 +38,31 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
   },
   iconButton: {
-    color: "rgb(50,50,50,0.5)",
+    color: "rgb(50,50,50,0.5) !important",
     float: "right",
-    padding: "6px",
+    padding: "6px !important",
   },
   icon: {
-    fontSize: "15px",
+    fontSize: "18px !important",
   },
   fillIcon: {
     float: "right",
     padding: "6px",
-    color: theme.palette.secondary.main,
+    color: `${theme.palette.secondary.light} !important`,
+  },
+  chipStyle: {
+    backgroundColor: "red",
+    width: theme.spacing(6),
+    height: theme.spacing(3),
+    fontSize: theme.spacing(2),
+    lineHeight: theme.spacing(3),
+    textAlign: "center",
+    opacity: "0.7",
+    color: "rgb(255,255,255) !important",
+    borderRadius: "3px !important",
   },
   title: {
-    fontSize: "13px",
+    fontSize: "13px !important",
     color: "#000",
     margin: "4px 0px",
     overflow: "hidden",
@@ -103,18 +113,9 @@ const ProductCard = ({ props }) => {
     <Card className={classNames.root}>
       <CardActions className={classNames.icons}>
         {product.onSale ? (
-          <Chip
-            variant="default"
-            size="small"
-            label="Sale"
-            style={{
-              backgroundColor: "red",
-              // backgroundColor: "#34af89",
-              opacity: "0.7",
-              color: "white",
-              borderRadius: "3px",
-            }}
-          />
+          <div
+            className={classNames.chipStyle}
+          >Sale</div>
         ) : (
           <div></div>
         )}

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import ReactInterval from "react-interval";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import MobileStepper from "@material-ui/core/MobileStepper";
-import Button from "@material-ui/core/Button";
-import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
-import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
+import { makeStyles, useTheme } from "@mui/styles";
+import MobileStepper from "@mui/material/MobileStepper";
+import Button from "@mui/material/Button";
+import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 
 const tutorialSteps = [
   "https://rukminim1.flixcart.com/flap/1688/280/image/d7dd5e4e04f6bfbc.jpg?q=50",
@@ -60,7 +60,7 @@ const Banner = () => {
         variant="dots"
         activeStep={activeStep}
         nextButton={
-          <Button size="small" onClick={handleNext}>
+          <Button size="small" style={{color:"black"}} onClick={handleNext}>
             Next
             {theme.direction === "rtl" ? (
               <KeyboardArrowLeft />
@@ -70,7 +70,7 @@ const Banner = () => {
           </Button>
         }
         backButton={
-          <Button size="small" onClick={handleBack}>
+          <Button size="small" style={{color:"black"}} onClick={handleBack}>
             {theme.direction === "rtl" ? (
               <KeyboardArrowRight />
             ) : (

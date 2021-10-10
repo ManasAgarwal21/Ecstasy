@@ -1,30 +1,30 @@
 import React from "react";
-import { Paper, Typography, Grid, IconButton } from "@material-ui/core";
-import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
-import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
+import { Paper, Typography, Grid, IconButton } from "@mui/material";
+import ImageList from "@mui/material/ImageList";
+import ImageListItem from "@mui/material/ImageListItem";
+import { makeStyles } from "@mui/styles";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import OfferCard from "../Cards/OfferCard";
+import ProductCard from "../Cards/ProductCard";
 import { useSelector } from "react-redux";
 import { getProducts } from "../../redux/selectors/user.selectors";
-import ImageList from "@material-ui/core/ImageList";
-import ImageListItem from "@material-ui/core/ImageListItem";
-import ProductCard from "../Cards/ProductCard";
-import { makeStyles } from "@material-ui/core/styles";
-import OfferCard from "../Cards/OfferCard";
-import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import "../../styles/App.css";
 
 const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
-    boxShadow: "none",
+    boxShadow: "none !important",
     margin: "20px",
-    backgroundColor: "transparent",
+    backgroundColor: "transparent !important",
     justifyContent: "space-between",
   },
   list: {
     maxWidth: "calc(100% - 19vw)",
     padding: "0px 20px",
-    backgroundColor: "white",
+    backgroundColor: "white !important",
     borderRadius: "4px",
     boxShadow: "0px 1px 8px rgba(0,0,0,0.2)",
     [theme.breakpoints.down("sm")]: {
@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
     scrollBehavior: "smooth",
   },
   imageListExpanded: {
-    flexWrap: "wrap",
+    flexWrap: "wrap !important",
   },
 }));
 
@@ -113,7 +113,7 @@ const CardContainer = ({ title, anchor, id, start, end }) => {
                 ? classNames.imageListExpanded
                 : classNames.imageList) + " imageList"
             }
-            cols={"auto"}
+            cols={products.length}
             id={id}
           >
             {products.map((item, index) => (

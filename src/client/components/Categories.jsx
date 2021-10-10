@@ -1,6 +1,6 @@
 import React from "react";
-import { Button } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { Button } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,8 +19,9 @@ const useStyles = makeStyles((theme) => ({
     display: "inline-flex",
   },
   button: {
-    margin: theme.spacing(1),
-    backgroundColor: "rgba(0,0,0,0)",
+    margin: `${theme.spacing(1)} !important`,
+    backgroundColor: "rgba(0,0,0,0) !important",
+    color: "rgb(0, 0, 0) !important",
     [theme.breakpoints.down("xs")]: {
       fontSize: "12px",
       paddingLeft: "2px",
@@ -28,12 +29,12 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   buttonColoured: {
-    margin: theme.spacing(1),
-    backgroundColor: "rgb(65, 105, 223)",
-    color: "#ffffff",
+    margin: `${theme.spacing(1)} !important`,
+    backgroundColor: "rgb(65, 105, 223) !important",
+    color: "#ffffff !important",
     "&:hover": {
       margin: theme.spacing(1),
-      backgroundColor: "rgb(65, 105, 223)",
+      backgroundColor: "rgb(65, 105, 223) !important",
       color: "#ffffff",
     },
     [theme.breakpoints.down("xs")]: {

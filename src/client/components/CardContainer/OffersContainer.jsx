@@ -1,7 +1,7 @@
 import React from "react";
-import ImageList from "@material-ui/core/ImageList";
-import ImageListItem from "@material-ui/core/ImageListItem";
-import { makeStyles } from "@material-ui/core/styles";
+import ImageList from "@mui/material/ImageList";
+import ImageListItem from "@mui/material/ImageListItem";
+import { makeStyles } from "@mui/styles";
 import OfferCard from "../Cards/OfferCard";
 import CategoryCard from "../Cards/CategoryCard";
 import image from "../../assets/default.jpg";
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     overflow: "scroll",
     scrollBehavior: "smooth",
     "&::-webkit-scrollbar": {
-      display: "none",
+      display: "none !important",
     },
   },
 }));
@@ -93,7 +93,7 @@ const OffersContainer = ({ type }) => {
 
   return (
     <div className={classes.root}>
-      <ImageList className={classes.list} cols={"auto"}>
+      <ImageList className={classes.list} cols={categories.length}>
         {type === "categories"
           ? categories.map((item, index) => (
               <ImageListItem

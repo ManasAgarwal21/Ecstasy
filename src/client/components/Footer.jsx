@@ -1,7 +1,7 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import { Grid, Typography } from "@material-ui/core";
+import { makeStyles } from "@mui/styles";
+import AppBar from "@mui/material/AppBar";
+import { Grid, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -14,11 +14,13 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-evenly",
   },
   heading: {
+    color: "white !important",
     [theme.breakpoints.down("sm")]: {
       fontSize: "15px",
     },
   },
   data: {
+    color: "white !important",
     [theme.breakpoints.down("sm")]: {
       fontSize: "13px",
     },
@@ -98,7 +100,8 @@ function Footer() {
           item
           container
           style={{
-            backgroundColor: "rgb(10, 38, 118)",
+            color: "white !important",
+            backgroundColor: "rgb(10, 38, 118) !important",
             height: "80px",
             padding: "10px",
           }}

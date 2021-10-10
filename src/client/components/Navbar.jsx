@@ -7,15 +7,15 @@ import {
   FormControl,
   Select,
   MenuItem,
-} from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
-import AssignmentTurnedInIcon from "@material-ui/icons/AssignmentTurnedIn";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import SearchBar from "./SearchBar";
+  Badge,
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { makeStyles } from "@mui/styles";
 import { Link } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
-import Badge from "@material-ui/core/Badge";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import SearchBar from "./SearchBar";
 import PopUp from "./PopUp";
 
 const useStyles = makeStyles((theme) => ({
@@ -31,6 +31,9 @@ const useStyles = makeStyles((theme) => ({
       "& > *": {
         margin: "0px 8px",
       },
+    },
+    [theme.breakpoints.down("sm")]: {
+      padding: "4px 0px",
     },
   },
   sticky: {
@@ -55,27 +58,29 @@ const useStyles = makeStyles((theme) => ({
   leftSection: {
     display: "flex",
     justifyContent: "space-evenly",
-    marginRight: "10px",
+    marginRight: "10px !important",
     [theme.breakpoints.down("xs")]: {
       maxWidth: "90px",
     },
   },
   item: {
-    fontSize: "11px",
+    fontSize: "11px !important",
+    height: theme.spacing(4),
+    margin: theme.spacing(1),
     maxWidth: theme.spacing(14),
     minWidth: theme.spacing(8),
   },
   title: {
-    fontWeight: 600,
+    fontWeight: `600 !important`,
     color: "rgb(50,200,140)",
-    fontSize: "20px",
+    fontSize: "20px !important",
     cursor: "default",
-    margin: "0px",
+    margin: "0px !important",
     [theme.breakpoints.up("sm")]: {
-      marginLeft: "20px",
+      marginLeft: "20px !important",
     },
     [theme.breakpoints.down("xs")]: {
-      fontSize: "15px",
+      fontSize: "15px !important",
     },
   },
   iconButton: {
@@ -86,48 +91,51 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "0px",
     marginRight: "0px",
     [theme.breakpoints.up("sm")]: {
-      display: "none",
+      display: "none !important",
     },
   },
   icon: {
-    color: "black",
-    fontSize: "24px",
+    color: "black !important",
+    fontSize: "24px !important",
     margin: "0px",
     padding: "0px",
-    [theme.breakpoints.down("xs")]: {
-      fontSize: "20px",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "20px !important",
     },
   },
   badge: {
-    [theme.breakpoints.down("xs")]: {
+    backgroundColor: "red",
+    color: "white",
+    [theme.breakpoints.down("sm")]: {
       fontSize: "12px",
-      width: "20px !important",
+      width: "20px",
       padding: "0px",
       height: "20px",
       borderRadius: "50%",
     },
   },
   button: {
-    textTransform: "none",
-    [theme.breakpoints.down("xs")]: {
-      fontSize: "12px",
+    textTransform: "none !important",
+    color: "black !important",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "12px !important",
     },
   },
   searchSection: {
-    [theme.breakpoints.down("xs")]: {
-      display: "none",
+    [theme.breakpoints.down("sm")]: {
+      display: "none !important",
     },
   },
   searchSecondary: {
-    display: "none",
+    display: "none !important",
     justifyContent: "center",
     borderBottom: "1px solid rgba(0,0,0,0.05)",
     alignItems: "center",
     position: "relative",
-    padding: "10px",
+    // padding: "10px",
     paddingLeft: "none",
-    [theme.breakpoints.down("xs")]: {
-      display: "flex",
+    [theme.breakpoints.down("sm")]: {
+      display: "flex !important",
     },
   },
 }));
@@ -163,6 +171,7 @@ const Navbar = (props) => {
               onChange={handleAddressChange}
               value={address}
               className={classNames.item}
+              variant="standard"
             >
               <MenuItem value={"default"}>
                 Deliver to :<br />
@@ -188,7 +197,6 @@ const Navbar = (props) => {
             >
               <Badge
                 badgeContent={1}
-                color="secondary"
                 classes={{ badge: classNames.badge }}
               >
                 <ShoppingCartIcon className={classNames.icon} />
@@ -221,6 +229,7 @@ const Navbar = (props) => {
             onChange={handleAddressChange}
             value={address}
             className={classNames.item}
+            variant="standard"
           >
             <MenuItem value={"default"}>
               Deliver to :<br />
