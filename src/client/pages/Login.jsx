@@ -21,8 +21,8 @@ import { LockOutlined, Visibility, VisibilityOff } from "@mui/icons-material";
 import { useSelector, useDispatch } from "react-redux";
 import { getData } from "../redux/selectors/user.selectors";
 import { updateUser } from "../redux/actions/user.actions";
-import {signin} from "../api/api-auth";
-import {encrypt} from "../../server/config/encrypt";
+import { signin } from "../api/api-auth";
+import { encrypt } from "../../server/config/encrypt";
 import { authenticate } from "./../../server/controller/auth-helper";
 
 const useStyles = makeStyles((theme) => ({
@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: `${theme.spacing(1)} !important`,
   },
   submit: {
-    margin: `${theme.spacing(3,0,2)} !important`
+    margin: `${theme.spacing(3, 0, 2)} !important`,
   },
 }));
 
@@ -64,7 +64,7 @@ export default function Login({ location }) {
   const classNames = useStyles();
   const { userReducer } = useSelector(getData);
   const dispatch = useDispatch();
-  
+
   const [user, setUser] = useState({
     password: userReducer.password,
     email: userReducer.email,
@@ -87,11 +87,9 @@ export default function Login({ location }) {
   };
 
   const handleChecked = (event) => {
-    if(event.target.checked)
-      setExtras({...extras, remember: true})
-    else
-      setExtras({...extras, remember: false});
-  }
+    if (event.target.checked) setExtras({ ...extras, remember: true });
+    else setExtras({ ...extras, remember: false });
+  };
 
   const handleClickShowPassword = () => {
     setExtras({ ...extras, showPassword: !extras.showPassword });
@@ -105,15 +103,16 @@ export default function Login({ location }) {
     event.preventDefault();
 
     signin(user).then((response) => {
-      if(response.error){
-        setExtras({...extras, error: response.error});
-      }else{
+      if (response.error) {
+        setExtras({ ...extras, error: response.error });
+      } else {
         authenticate(response, () => {
-          setExtras({...extras, redirectToReferrer: true});
+          setExtras({ ...extras, redirectToReferrer: true });
         });
-        localStorage.setItem("ECSID", encrypt(user.email, user.password));
+        if (extras.remember)
+          localStorage.setItem("ECSID", encrypt(user.email, user.password));
       }
-    })
+    });
   };
 
   const { redirectToReferrer } = extras;
@@ -134,7 +133,7 @@ export default function Login({ location }) {
       <div className={classNames.paper}>
         {/* for lock icon in the page */}
         <Avatar className={classNames.avatar}>
-          <LockOutlined/>
+          <LockOutlined />
         </Avatar>
         <Typography component="h1" variant="h5">
           Sign in
@@ -183,7 +182,13 @@ export default function Login({ location }) {
             </Typography>
           )}
           <FormControlLabel
-            control={<Checkbox value="remember" onChange={handleChecked} color="primary" />}
+            control={
+              <Checkbox
+                value="remember"
+                onChange={handleChecked}
+                color="primary"
+              />
+            }
             label="Remember me"
           />
           <Button

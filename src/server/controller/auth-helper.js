@@ -1,6 +1,6 @@
 function authenticate(jwt, cb){
     if(typeof window !== undefined){
-        sessionStorage.setItem("jwt", JSON.stringify(jwt));
+        sessionStorage.setItem("ECSID", JSON.stringify(jwt.token));
     }
     cb();
 }
@@ -8,8 +8,8 @@ function authenticate(jwt, cb){
 function isAuthenticated(){
     if(typeof window === undefined)
         return false;
-    if(sessionStorage.getItem("jwt")){
-        return JSON.parse(sessionStorage.getItem("jwt"));
+    if(sessionStorage.getItem("ECSID")){
+        return JSON.parse(sessionStorage.getItem("ECSID"));
     }
     else return false;
 }
