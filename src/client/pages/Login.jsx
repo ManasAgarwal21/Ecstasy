@@ -23,6 +23,7 @@ import { getData } from "../redux/selectors/user.selectors";
 import { updateUser } from "../redux/actions/user.actions";
 import {signin} from "../api/api-auth";
 import {encrypt} from "../../server/config/encrypt";
+import { authenticate } from "./../../server/controller/auth-helper";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -107,8 +108,10 @@ export default function Login({ location }) {
       if(response.error){
         setExtras({...extras, error: response.error});
       }else{
+        authenticate(response, () => {
+          setExtras({...extras, redirectToReferrer: true});
+        });
         localStorage.setItem("ECSID", encrypt(user.email, user.password));
-        setExtras({...extras, redirectToReferrer: true});
       }
     })
   };

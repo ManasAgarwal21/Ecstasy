@@ -1,6 +1,7 @@
 import UserSchema from "../models/user.model";
 import jwt from "jsonwebtoken";
 import config from "../config/config";
+import expressJWT from "express-jwt";
 
 const signin = async (req, res) => {
     try{
@@ -11,9 +12,12 @@ const signin = async (req, res) => {
         const token = jwt.sign({
             _id: user._id
         }, config.jwtSecret);
+        
+        res.cookie('t', token, {expire: new Date() + 9999});
 
         return res.status(200).json({
-            token: token
+            token: token,
+            user: user
         });
     }
     catch(err){
@@ -22,5 +26,11 @@ const signin = async (req, res) => {
         })
     }
 }
+
+const requireSignIn = expressJWT({
+    secret: config.jwtSecret,
+    algorithms: ['HS256'],
+    userProperty: 'auth'
+})
 
 export default signin;
