@@ -7,6 +7,7 @@ import {
   PinDropOutlined,
 } from "@mui/icons-material";
 import { makeStyles } from "@mui/styles";
+import { Redirect } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -59,6 +60,7 @@ export default function SearchBar() {
   // }]);
   const [searchTerm, setSearchTerm] = useState({
     term: "",
+    search: false,
     filters: {
       price: "",
       brand: "",
@@ -82,10 +84,26 @@ export default function SearchBar() {
   const handleChange = (event) => {
     setSearchTerm({ ...searchTerm, term: event.target.value });
   };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setSearchTerm({ ...searchTerm, search: true });
+  };
 
   return (
     <React.Fragment>
-      <Paper component="form" className={classNames.root}>
+      {searchTerm.search && (
+        <Redirect
+          to={{
+            pathname: "/home",
+            search: `search=${searchTerm.term}`,
+          }}
+        />
+      )}
+      <Paper
+        onSubmit={handleSubmit}
+        component="form"
+        className={classNames.root}
+      >
         <IconButton
           className={classNames.colouredIconButton}
           aria-label="search"

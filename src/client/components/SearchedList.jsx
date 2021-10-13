@@ -1,9 +1,9 @@
 import React from "react";
 
-const SearchedList = () => {
+const SearchedList = ({searchTerm}) => {
     return (
         <div>
-            hi these are searched products.
+            hi you searched for {searchTerm}.
         </div>
     )
 }
