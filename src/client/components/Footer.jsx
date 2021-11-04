@@ -51,7 +51,7 @@ const footer = [
     data: [
       "H-Block hostel, gla university, mathura 281406",
       "Uttar Pradesh, India",
-      "Mobile : 8750388075",
+      "Mobile : 1234567890",
       "Mail : ecstasyteam@gmail.com",
     ],
   },

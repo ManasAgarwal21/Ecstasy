@@ -10,8 +10,10 @@ import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import SettingsIcon from "@mui/icons-material/Settings";
+import {getUser} from "./../redux/selectors/user.selectors";
 import { Redirect } from "react-router-dom";
 import { clearJWT } from "./../../server/controller/auth-helper";
+import { useSelector } from "react-redux";
 
 const StyledMenu = withStyles({
   paper: {
@@ -47,6 +49,7 @@ const StyledMenuItem = withStyles((theme) => ({
 
 const PopUp = ({ setAnchorEl, anchorEl, setIsDisable }) => {
   const [redirect, setRedirect] = useState(false);
+  const {userReducer} = useSelector(getUser);
 
   const signout = () => {
     clearJWT(() => {
@@ -72,12 +75,12 @@ const PopUp = ({ setAnchorEl, anchorEl, setIsDisable }) => {
           >
             <div className="flex flex-col items-center w-full">
               <AccountCircleIcon fontSize="large" />
-              <ListItemText primary="Manas Agarwal" />
+              <ListItemText primary={userReducer.name} />
               <span
                 className="-mt-2 text-gray-600"
                 style={{ fontSize: "13px", marginBottom: "5px" }}
               >
-                Customer
+                {userReducer.role}
               </span>
             </div>
             <Divider style={{ backgroundColor: "royalblue" }} />

@@ -13,7 +13,7 @@ export default function Home() {
 
   const { search } = useLocation();
   const match = search.match(/search=(.*)/);
-  const type = match?.[1];
+  const term = match?.[1];
 
   return (
     <React.Fragment>
@@ -25,8 +25,7 @@ export default function Home() {
             setIsSidebarOpen={setIsSidebarOpen}
           />
           <Categories />
-          {!type && <HomeContent />}
-          {type === "search" && <SearchedList />}
+          {term ? <SearchedList searchTerm={term} /> : <HomeContent />}
           <Footer />
         </React.Fragment>
       ) : (

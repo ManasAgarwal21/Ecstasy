@@ -19,7 +19,7 @@ import { makeStyles } from "@mui/styles";
 import { Link, Redirect } from "react-router-dom";
 import { LockOutlined, Visibility, VisibilityOff } from "@mui/icons-material";
 import { useSelector, useDispatch } from "react-redux";
-import { getData } from "../redux/selectors/user.selectors";
+import { getUser } from "../redux/selectors/user.selectors";
 import { updateUser } from "../redux/actions/user.actions";
 import { signin } from "../api/api-auth";
 import { encrypt } from "../../server/config/encrypt";
@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Login({ location }) {
   const classNames = useStyles();
-  const { userReducer } = useSelector(getData);
+  const { userReducer } = useSelector(getUser);
   const dispatch = useDispatch();
 
   const [user, setUser] = useState({
@@ -107,6 +107,7 @@ export default function Login({ location }) {
         setExtras({ ...extras, error: response.error });
       } else {
         authenticate(response, () => {
+          dispatch(updateUser(response.user));
           setExtras({ ...extras, redirectToReferrer: true });
         });
         if (extras.remember)
